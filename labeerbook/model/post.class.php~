@@ -1,0 +1,20 @@
+<?php
+
+/** 
+ * @Entity
+ * @Table(name="fredouil.post")
+ */
+class post{
+
+	/** @Id @Column(type="integer")
+	 *  @GeneratedValue
+	 */ 
+	public $id;
+
+	/** @Column(type="TEXT") */
+	
+	public $texte;
+		
+}
+
+?>
