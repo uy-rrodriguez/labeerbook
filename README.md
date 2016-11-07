@@ -1,2 +1,2 @@
 # labeerbook
-LaBeerBook, best FB pour les amateurs de beers.
+LaBeerBook, best FB-like pour les amateurs de beers.
