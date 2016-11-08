@@ -71,14 +71,12 @@ class mainController{
 
     public static function showChats($request, $context) {
         try {
-            /*
             $chats = chatTable::getChats();
             $lastChat = chatTable::getLastChat();
 
             $context->setSessionAttribute("chats", $chats);
             $context->setSessionAttribute("lastChat", $lastChat);
-            */
-            echo "LALALA";
+
             return context::SUCCESS;
         }
         catch (Exception $e) {

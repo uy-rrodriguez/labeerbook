@@ -38,12 +38,12 @@ class utilisateur {
 
 
 	/**
-	 * @OneToMany(targetEntity="message", mappedBy="emetteur")
+	 * @OneToMany(targetEntity="message", mappedBy="emetteur", fetch="LAZY")
 	 */
 	public $messages;
 
 	/**
-	 * @OneToMany(targetEntity="chat", mappedBy="emetteur")
+	 * @OneToMany(targetEntity="chat", mappedBy="emetteur", fetch="LAZY")
 	 */
 	public $chats;
 

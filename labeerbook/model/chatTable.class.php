@@ -5,10 +5,14 @@
 */
 
 class chatTable {
-u
-ne méthode
-getLastChat()
-permettant de récupérer le dernier message posté sur le chat.
+
+    /*//*//*/
+	    Auteur : R.RODRIGUEZ
+	    Description :
+	    	La méthode a pour but de récupérer tous les chats dans la BDD.
+	    Sortie :
+			$chats => Liste de tous les chats dans le système.
+	/*//*//*/
 
     public static function getChats() {
         $em = dbconnection::getInstance()->getEntityManager();
@@ -19,16 +23,25 @@ permettant de récupérer le dernier message posté sur le chat.
         return $chats; // Miaouuu
     }
 
+
+    /*//*//*/
+	    Auteur : R.RODRIGUEZ
+	    Description :
+	    	La méthode a pour but de récupérer le dernier chat publié.
+            On utilise un Query personnalisée.
+	    Sortie :
+			$lastChat => Correspond au dernier chat publié, le seul trouvé par la requête.
+	/*//*//*/
+
     public static function getLastChat() {
-        $em = dbconnection::getInstance()->getEntityManager() ;
+        $em = dbconnection::getInstance()->getEntityManager();
 
         $query = $em->createQuery("SELECT c FROM chat c WHERE c.id = (SELECT MAX(c2.id) FROM chat c2)");
-        $results = $query->getResult();
+        $lastChat = $query->getSingleResult();
 
-        if (count($results) > 0)
-            return $results[0];
-        else
-            return NULL;
+        print_r($lastChat);
+
+        return $lastChat;
     }
 
 }

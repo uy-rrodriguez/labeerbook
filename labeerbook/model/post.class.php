@@ -27,12 +27,12 @@ class post {
 
 
 	/**
-	 *  @ManyToOne(targetEntity="message", mappedBy="post")
+	 *  @OneToMany(targetEntity="message", mappedBy="post")
 	 */
 	public $messages;
 
 	/**
-	 *  @ManyToOne(targetEntity="chat", mappedBy="post")
+	 *  @OneToMany(targetEntity="chat", mappedBy="post")
 	 */
 	public $chats;
 
