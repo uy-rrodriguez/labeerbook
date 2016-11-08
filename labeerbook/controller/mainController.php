@@ -78,6 +78,7 @@ class mainController{
             $context->setSessionAttribute("chats", $chats);
             $context->setSessionAttribute("lastChat", $lastChat);
             */
+            echo "LALALA";
             return context::SUCCESS;
         }
         catch (Exception $e) {

@@ -1,5 +1,9 @@
 <?php
 
+error_reporting(E_ALL^E_WARNING);
+ini_set("display_errors", true);
+
+
 //nom de l'application
 $nameApp = "labeerbook";
 
