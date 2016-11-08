@@ -62,7 +62,7 @@ class mainController{
 				        return context::SUCCESS;
         }
         } catch (Exception $e) {
-        			echo "erreur";
+        			echo $e;
         }
 
 

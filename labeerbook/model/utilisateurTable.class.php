@@ -30,7 +30,7 @@ class utilisateurTable {
 		$em = dbconnection::getInstance()->getEntityManager() ;
 
 		$userRepository = $em->getRepository('utilisateur');
-		$user = $userRepository->find($id));	
+		$user = $userRepository->find($id);	
 
 		return $user; 
 	}
