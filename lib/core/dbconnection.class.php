@@ -1,8 +1,8 @@
 <?php
 
 define ('HOST', 'pedago02a.univ-avignon.fr') ;
-define ('USER', ''  ) ;
-define ('PASS', '' ) ;
+define ('USER', 'uapv1403752') ;
+define ('PASS', 'af5Fd2' ) ;
 define ('DB', 'etd' ) ;
 
 use Doctrine\ORM\Tools\Setup;
@@ -22,7 +22,7 @@ private function __construct(){
 	'password' => PASS,
 	'host'	=> HOST,
 	'driver' => 'pdo_pgsql');
-	
+
 	try{
 		self::$entityManager = EntityManager::create($param, $config);
 	}
@@ -31,7 +31,7 @@ private function __construct(){
 		$this->error = $e->getMessage();
 	}
 
-}	
+}
 
 public static function getInstance(){
 	if(self::$instance == null){
@@ -45,15 +45,15 @@ public function closeConnection(){
 }
 
 public function getEntityManager(){
-	if(!empty(self::$entityManager)) 
+	if(!empty(self::$entityManager))
 		return self::$entityManager;
-	else 
+	else
 		return NULL;
 }
 
 
 public function __clone(){
-	
+
 }
 
 public function getError(){
