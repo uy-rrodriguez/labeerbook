@@ -39,6 +39,12 @@ class mainController{
 		}
 	}
 
+    public static function logout($request, $context) {
+        $context->setSessionAttribute("user", NULL);
+		$context->setSessionAttribute("msgInfo", "Ciao " . $user->identifiant);
+        return context::SUCCESS;
+    }
+
 
 
 }
