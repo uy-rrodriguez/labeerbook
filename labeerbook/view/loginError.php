@@ -1,5 +1,3 @@
-<h2> Il y a eu une erreur !!</h2>
-
 <form method = "POST" action = "labeerbook.php?action=login">
 Login : <br>
 <input type="text" name="login"/><br>
