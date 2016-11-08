@@ -11,10 +11,7 @@ public static function getUserByLoginAndPass($login,$pass){
 
 	$userRepository = $em->getRepository('utilisateur');
 	$user = $userRepository->findOneBy(array('identifiant' => $login, 'pass' => sha1($pass)));	
-	
-	if ($user == false){
-		echo 'Erreur sql';
-	}
+
 	return $user; 
 }
 

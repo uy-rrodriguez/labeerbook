@@ -20,7 +20,7 @@ class mainController{
 	}
 
 
-	public static function login($request, $context){
+	public static function login($request, $context) {
 		if (!empty($_POST['login']) || !empty($_POST['password'])) {
 
             $user = utilisateurTable::getUserByLoginAndPass($_POST['login'], $_POST['password']);
