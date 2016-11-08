@@ -8,7 +8,7 @@
     echo " " . $userMessages->date_de_naissance;
     echo "<br><br>";
 
-    for ($messages as $mes) {
+    foreach ($messages as $mes) {
         echo "--> " . $mes->post->texte;
         echo " (écrit par " . $mes->emetteur->identifiant;
         echo " à destination de " . $mes->destinataire->identifiant;
