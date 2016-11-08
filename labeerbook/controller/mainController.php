@@ -21,9 +21,9 @@ class mainController{
 
 
 	public static function login($request, $context) {
-		if (!empty($_POST['login']) || !empty($_POST['password'])) {
+		if (!empty($request['login']) || !empty($request['password'])) {
 
-            $user = utilisateurTable::getUserByLoginAndPass($_POST['login'], $_POST['password']);
+            $user = utilisateurTable::getUserByLoginAndPass($request['login'], $request['password']);
 			if ($user) {
                 $context->setSessionAttribute("user", $user);
 				$context->setSessionAttribute("msgInfo", "Bonjour " . $user->identifiant);
@@ -45,6 +45,17 @@ class mainController{
         return context::SUCCESS;
     }
 
+
+    public static function showMessage($request, $context) {
+        $idUser = $request["idUtilisateur"];
+        $user = utilisateurTable::getUserById($idUser);
+        $messages = $user->messages;
+
+        $context->setSessionAttribute("userMessages", $user);
+        $context->setSessionAttribute("messages", $messages);
+
+        return context::SUCCESS;
+    }
 
 
 }

@@ -1,5 +1,6 @@
 <?php
     error_reporting(E_ALL);
+    ini_set("display_errors", true);
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +11,7 @@
 
 </head>
 <body>
-    <?php include($nameApp."/view/messages.php"); ?>
+    <?php include($nameApp."/view/bandeau.php"); ?>
 
 	<?php include($template_view); ?>
 </body>
