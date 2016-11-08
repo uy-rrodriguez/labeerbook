@@ -4,16 +4,16 @@
     Auteur : Q.CASTILLO/R.RODRIGUEZ
 /*//*//*/
 
-/** 
+/**
  * @Entity
  * @Table(name="fredouil.post")
  */
 class post {
 
-	/** 
+	/**
 	 *  @Id @Column(type="integer")
 	 *  @GeneratedValue
-	 */ 
+	 */
 	public $id;
 
 	/** @Column(type="string", length=2000) */
@@ -26,12 +26,12 @@ class post {
 	public $image;
 
 
-	/**  
+	/**
 	 *  @ManyToOne(targetEntity="message", mappedBy="post")
 	 */
 	public $messages;
 
-	/**  
+	/**
 	 *  @ManyToOne(targetEntity="chat", mappedBy="post")
 	 */
 	public $chats;
