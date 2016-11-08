@@ -1,24 +1,40 @@
 <?php
 
+/*//*//*/
+    Auteur : Q.CASTILLO/R.RODRIGUEZ
+/*//*//*/
+
 /** 
  * @Entity
  * @Table(name="fredouil.post")
  */
-class post{
+class post {
 
-	/** @Id @Column(type="integer")
+	/** 
+	 *  @Id @Column(type="integer")
 	 *  @GeneratedValue
 	 */ 
 	public $id;
 
-	/** @Column(type="TEXT") */
+	/** @Column(type="string", length=2000) */
 	public $texte;
 
-	/** @Column(type="TIMESTAMP") */
+	/** @Column(type="datetime") */
 	public $date;
 
-	/** @Column(type="string", length=45) */
+	/** @Column(type="string", length=200) */
 	public $image;
+
+
+	/**  
+	 *  @ManyToOne(targetEntity="message", mappedBy="post")
+	 */
+	public $messages;
+
+	/**  
+	 *  @ManyToOne(targetEntity="chat", mappedBy="post")
+	 */
+	public $chats;
 
 }
 

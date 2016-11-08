@@ -1,14 +1,14 @@
 <?php
 
+/*//*//*/
+    Auteur : R.RODRIGUEZ/Q.CASTILLO
+/*//*//*/
+
 /**
  * @Entity
  * @Table(name="fredouil.utilisateur")
  */
-class utilisateur{
-
-    /*//*//*/
-        Auteur : R.RODRIGUEZ
-    /*//*//*/
+class utilisateur {
 
 	/** @Id @Column(type="integer")
 	 *  @GeneratedValue
@@ -35,6 +35,17 @@ class utilisateur{
 
 	/** @Column(type="datetime") */
 	public $date_de_naissance;
+
+
+	/**
+	 * @OneToMany(targetEntity="message", mappedBy="emetteur")
+	 */
+	public $messages;
+
+	/**
+	 * @OneToMany(targetEntity="chat", mappedBy="emetteur")
+	 */
+	public $chats;
 
 }
 
