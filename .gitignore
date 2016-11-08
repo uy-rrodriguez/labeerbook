@@ -1,0 +1,6 @@
+# Backups créés par BlueFish
+*.php~
+
+# Fichiers de project d'Eclipse (si jamais on ouvre les fichiers avec Eclipse)
+.project
+
