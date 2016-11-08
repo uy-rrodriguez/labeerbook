@@ -47,19 +47,24 @@ class mainController{
 
 
     public static function showMessage($request, $context) {
-        $idUser = $request["idUtilisateur"];
-        $user = utilisateurTable::getUserById($idUser);
+        try {
+        	        $idUser = $request["idUtilisateur"];
+			        $user = utilisateurTable::getUserById($idUser);
 
-        if($user == NULL){
-        	return context::ERROR;
-        }
-        else{
-        	$messages = $user->messages;
-	        $context->setSessionAttribute("userMessages", $user);
-	        $context->setSessionAttribute("messages", $messages);
+			        if($user == NULL){
+			        	return context::ERROR;
+			        }
+			        else{
+			        	$messages = $user->messages;
+				        $context->setSessionAttribute("userMessages", $user);
+				        $context->setSessionAttribute("messages", $messages);
 
-	        return context::SUCCESS;
+				        return context::SUCCESS;
         }
+        } catch (Exception $e) {
+        			echo "erreur";
+        }
+
 
     }
 
