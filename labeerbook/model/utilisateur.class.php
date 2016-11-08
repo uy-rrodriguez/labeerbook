@@ -33,7 +33,7 @@ class utilisateur {
 	/** @Column(type="string", length=200) */
 	public $avatar;
 
-	/** @Column(type="TIMESTAMP") */
+	/** @Column(type="datetime") */
 	public $date_de_naissance;
 
 

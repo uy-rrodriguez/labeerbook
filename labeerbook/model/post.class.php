@@ -19,7 +19,7 @@ class post {
 	/** @Column(type="string", length=2000) */
 	public $texte;
 
-	/** @Column(type="TIMESTAMP") */
+	/** @Column(type="datetime") */
 	public $date;
 
 	/** @Column(type="string", length=200) */
