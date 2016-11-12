@@ -1,0 +1,16 @@
+Réponses TP 2 - RODRIGUEZ, Ricardo
+----------------------------------
+
+Expliquer clairement les mécanismes php permettant d'appeler et exécuter les méthodes - findOneByidentifiant() ou
+findByidentifiant() - sur un repository associé à l'entité utilisateur sachant que identifiant est une de ces propriétés.
+
+  Les méthodes findOneByX et findByX (X étant une propriété de la classe associé au repository sur lequel on fait l'appel)
+  vont chercher dans la base de données un ou tous les objets qui correspondent à la valeur passé en paramètre.
+  findOneByIdentifiant va retourner le même résultat que findOneBy("identifiant", valeur).
+  
+  Ces méthodes sont dites "magiques" puisqu'il n'est pas nécessaire de les définir dans le code de la classe. En PHP, quand on
+  fait appel à une méthode qui n'existe pas (par exemple objet->methodeInexistante(valeur) ), le compilateur
+  va regarder si on a implementé la méthode magique __call($nomMethode, $args) et il va l'exécuter en envoyant le nom de la
+  méthode et les arguments. Dans cette fonction on peut dire à PHP quel est le comportement à exécuter à partir des arguments
+  recus. Dans le cas de findOneByX et findByX, le repository va regarder si l'attribut X appartient à notre modèle et il
+  cherchera ensuite les enregistrements dans la BDD correspondant.
