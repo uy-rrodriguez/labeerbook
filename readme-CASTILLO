@@ -1,0 +1,31 @@
+Expliquer clairement les mécanismes php permettant d'appeler et exécuter les méthodes - findOneByidentifiant() ou findByidentifiant() :
+
+
+Concernant les deux méthodes, il faut savoir  que ce sont des méthodes magiques, elles sont donc déjà présentes grâce à Doctrine2.
+On utilise donc la méthode public mixed __call ( string $name , array $arguments ). L'argument $name est le nom de la méthode appelée.
+L'argument $arguments est un tableau contenant les paramètres passés à la méthode $name. 
+
+--------------------------
+findOneByIdentifiant() : 
+--------------------------
+
+Cette méthode permet de retourner UNE entité contenue dans la base de données (dans notre cas, celle d'identifiant). Cette 
+méthode permet l'utilisation de filtres afin d'y ajouter des critères.
+
+La méthode de base est findOneByX($valeur), mais comme notre modèle possède une entité Identifiant, la méthode magique est
+appelée.
+  
+  
+  
+--------------------------
+findByIdentifiant() : 
+--------------------------
+Elle permet de retourner une liste d'entités, sauf qu'elle est capable d'effectuer un filtre pour ne retourner que les entités
+correspondant à un ou plusieurs critère(s). Elle peut aussi trier les entités, et même n'en récupérer qu'un certain nombre
+(pour une pagination).
+ 
+La méthode de base est findByX($valeur).
+ 
+ 
+ 
+ Quentin Castillo.
