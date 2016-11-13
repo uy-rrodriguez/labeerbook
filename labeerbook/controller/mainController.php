@@ -61,6 +61,22 @@ class mainController{
         }
     }
 
+    /*//*//*/
+    	Auteur : Q.CASTILLO
+    /*//*//*/
+    public static function showUsers($request, $context) {
+    	try {
+		$users = utilisateurTable::getUsers();
+		
+		$context->setSessionAttribute("users",$users);
+		
+		return context::SUCCESS;
+	}
+	catch(Exception $e) {
+	    $context->setSessionAttribute("msgErreur", $e->getMessage());
+            return context::ERROR;
+	}	   
+    }
 
     /*//*//*/
     	Auteur : R.RODRIGUEZ
