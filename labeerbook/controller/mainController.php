@@ -21,9 +21,13 @@ class mainController{
 
 
 	public static function login($request, $context) {
-		if (!empty($request['login']) || !empty($request['password'])) {
-
+		if ($context->getSessionAttribute("user") != null) {
+			return context::SUCCESS;
+		}
+		
+		else if (!empty($request['login']) || !empty($request['password'])) {
             $user = utilisateurTable::getUserByLoginAndPass($request['login'], $request['password']);
+            
 			if ($user) {
                 $context->setSessionAttribute("user", $user);
 				$context->setSessionAttribute("msgInfo", "Bonjour " . $user->identifiant);
@@ -34,17 +38,11 @@ class mainController{
                 return context::ERROR;
             }
 		}
+		
 		else {
 			return context::ERROR;
 		}
 	}
-
-    public static function logout($request, $context) {
-        $context->setSessionAttribute("user", NULL);
-		$context->setSessionAttribute("msgInfo", "Ciao " . $user->identifiant);
-        return context::SUCCESS;
-    }
-
 
     public static function showMessage($request, $context) {
         try {
@@ -69,6 +67,9 @@ class mainController{
     }
 
 
+    /*//*//*/
+    	Auteur : R.RODRIGUEZ
+    /*//*//*/
     public static function showChats($request, $context) {
         try {
             $chats = chatTable::getChats();
@@ -83,6 +84,24 @@ class mainController{
             $context->setSessionAttribute("msgErreur", $e->getMessage());
             return context::ERROR;
         }
+    }
+    
+    
+
+	/* ************************************************************************** *
+     * 								ACTIONS AJAX
+     * ************************************************************************** */
+    
+    public static function ajaxLogout($request, $context) {
+    	$user = $context->getSessionAttribute("user");
+    	$context->setSessionAttribute("user", NULL);
+    
+    	$data = array("type" => context::NONE);
+    
+    	if ($user != NULL)
+    		$data["msgInfo"] = "Vous êtes bien déconnecté. Ciao " . $user->identifiant;
+    
+    		return $data;
     }
 
 

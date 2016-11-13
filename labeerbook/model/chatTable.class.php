@@ -39,8 +39,6 @@ class chatTable {
         $query = $em->createQuery("SELECT c FROM chat c WHERE c.id = (SELECT MAX(c2.id) FROM chat c2)");
         $lastChat = $query->getSingleResult();
 
-        print_r($lastChat);
-
         return $lastChat;
     }
 

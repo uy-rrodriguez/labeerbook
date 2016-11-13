@@ -1,19 +1,31 @@
 <?php
+	/*//*//*/
+		Auteur : R.RODRIGUEZ
+	/*//*//*/
+
     $chats = $context->getSessionAttribute("chats");
     $lastChat = $context->getSessionAttribute("lastChat");
-
+    
     if ($lastChat != NULL) {
-        echo "Le dernier chat à arriver est : " . $lastChat->post->texte;
-        echo " nourrit par " . $lastChat->emetteur->identifiant;
-        echo ", né le " . $lastChat->post->date;
-        echo ". Miaouuu !! <3 <3";
+        echo "<u>Le dernier chat à arriver est : </u><br/>";
+        echo "<img src='static/img/cat_ninja_w.png'>";
+        
+        $context->setSessionAttribute("chatTemplate", $lastChat);
+        include("$nameApp/view/templates/chat.php");
+        
         echo "<br><br>";
     }
 
+    echo "<u>Liste de chats : </u><br/>";
     foreach ($chats as $chat) {
-        echo "--> " . $chat->post->texte;
-        echo " (nourrit par " . $chat->emetteur->identifiant;
-        echo ", né le " . $chat->post->date . ")";
-        echo "<br>";
+        echo "<li>";
+        echo "<img src='static/img/cat_ninja.png'>";
+        
+        $context->setSessionAttribute("chatTemplate", $chat);
+        include("$nameApp/view/templates/chat.php");
+        
+        echo "</li>";
     }
 ?>
+
+<!-- Icons from https://www.iconfinder.com/iconsets/brands-outlined-1 -->

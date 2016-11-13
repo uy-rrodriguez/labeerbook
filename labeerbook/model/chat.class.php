@@ -15,15 +15,17 @@ class chat {
 	 */
 	public $id;
 
+	// On a supprime @Column(type="integer") pour obtenir un objet utilisateur dans
+	// l'attribut $emetteur.
 	/**
-	 *  @Column(type="integer")
      *  @OneToOne(targetEntity="utilisateur", inversedBy="chats")
      *  @JoinColumn(name="emetteur", referencedColumnName="id")
 	 */
 	public $emetteur;
 
+	// On a supprime @Column(type="integer") pour obtenir un objet post dans
+	// l'attribut $post.
 	/**
-	 *  @Column(type="integer")
      *  @OneToOne(targetEntity="post", inversedBy="chats")
      *  @JoinColumn(name="post", referencedColumnName="id")
 	 */
