@@ -60,7 +60,8 @@ class mainController{
 				        return context::SUCCESS;
         }
         } catch (Exception $e) {
-        			echo $e;
+            $context->setSessionAttribute("msgErreur", $e->getMessage());
+            return context::ERROR;
         }
 
 
