@@ -13,7 +13,7 @@
 <body>
     <?php include($nameApp."/view/bandeau.php"); ?>
 
-	<div id="contenu">
+	<div id="contenu" style="position: relative;">
 		<?php include($template_view); ?>
 	</div>
 </body>

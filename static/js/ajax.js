@@ -36,8 +36,8 @@ function logout() {
 		
 		// http://stackoverflow.com/a/14461824
 		$('#contenu').fadeTo('slow',.6);
-		$('#contenu').append('<div style="position: absolute;top:0;left:0;width: 100%;height:100%;z-index:2;opacity:0.4;"></div>');
+		$('#contenu').prepend('<div style="position: absolute;top:0;left:0;width: 100%;height:100%;z-index:2;opacity:0.4;"></div>');
 		
-		$("#contenu").after("<button onclick='document.location.href=\"\"'>Aller au login</buton>");
+		$(document.body).append("<button onclick='document.location.href=\"\"'>Aller au login</buton>");
 	})
 }
