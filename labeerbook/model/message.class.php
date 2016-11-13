@@ -16,37 +16,40 @@ class message {
 	 */ 
 	public $id;
 
+    // On a supprime @Column(type="integer") pour obtenir un objet utilisateur dans
+	// l'attribut $emetteur. La récupération est faite de manière LAZY.
 	/** 
-	 *  @Column(type="integer") 
-	 *  @OneToOne(targetEntity="utilisateur", inversedBy="messages")
+	 *  @OneToOne(targetEntity="utilisateur", inversedBy="messages", fetch="LAZY")
 	 *  @JoinColumn(name="emetteur", referencedColumnName="id")
 	 */
 	public $emetteur;
 
+    // On a supprime @Column(type="integer") pour obtenir un objet utilisateur dans
+	// l'attribut $destinataire. La récupération est faite de manière LAZY.
 	/** 
-	 *  @Column(type="integer")
-	 *  @OneToOne(targetEntity="utilisateur")
+	 *  @OneToOne(targetEntity="utilisateur", fetch="LAZY")
 	 *  @JoinColumn(name="destinataire", referencedColumnName="id")
 	 */
 	public $destinataire;
 
-	/** 
-	 *  @Column(type="integer") 
-	 *  @OneToOne(targetEntity="utilisateur")
+    // On a supprime @Column(type="integer") pour obtenir un objet utilisateur dans
+	// l'attribut $parent. La récupération est faite de manière LAZY.
+	/**
+	 *  @OneToOne(targetEntity="utilisateur", fetch="LAZY")
 	 *  @JoinColumn(name="parent", referencedColumnName="id")
 	 */
 	public $parent;
 
-	/** 
-	 *  @Column(type="integer") 
-     *  @OneToOne(targetEntity="post")
+    // On a supprime @Column(type="integer") pour obtenir un objet post dans
+	// l'attribut $post. La récup+eration est faite de manière LAZY.
+	/**
+     *  @OneToOne(targetEntity="post", fetch="LAZY")
 	 *  @JoinColumn(name="post", referencedColumnName="id")
 	 */
 	public $post;
 
-
 	/** @Column(type="integer") */
-	public $aimer;
+	public $aime;
 
 }
 

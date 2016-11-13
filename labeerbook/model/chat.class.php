@@ -18,7 +18,7 @@ class chat {
 	// On a supprime @Column(type="integer") pour obtenir un objet utilisateur dans
 	// l'attribut $emetteur.
 	/**
-     *  @OneToOne(targetEntity="utilisateur", inversedBy="chats")
+     *  @OneToOne(targetEntity="utilisateur", inversedBy="chats", fetch="LAZY")
      *  @JoinColumn(name="emetteur", referencedColumnName="id")
 	 */
 	public $emetteur;
@@ -26,7 +26,7 @@ class chat {
 	// On a supprime @Column(type="integer") pour obtenir un objet post dans
 	// l'attribut $post.
 	/**
-     *  @OneToOne(targetEntity="post", inversedBy="chats")
+     *  @OneToOne(targetEntity="post", inversedBy="chats", fetch="LAZY")
      *  @JoinColumn(name="post", referencedColumnName="id")
 	 */
 	public $post;

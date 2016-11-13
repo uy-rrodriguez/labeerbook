@@ -13,10 +13,8 @@ class mainController{
 	}
 
 
-	public static function index($request,$context){
-
+	public static function index($request,$context) {
 		return context::SUCCESS;
-
 	}
 
 
@@ -46,24 +44,20 @@ class mainController{
 
     public static function showMessage($request, $context) {
         try {
-        	        $idUser = $request["idUtilisateur"];
-			        $user = utilisateurTable::getUserById($idUser);
+            $idUser = $request["idUtilisateur"];
+            $user = utilisateurTable::getUserById($idUser);
 
-			        if($user == NULL){
-			        	return context::ERROR;
-			        }
-			        else{
-			        	$messages = $user->messages;
-				        $context->setSessionAttribute("userMessages", $user);
-				        $context->setSessionAttribute("messages", $messages);
-
-				        return context::SUCCESS;
+            if($user == NULL){
+                return context::ERROR;
+            }
+            else {
+                $context->setSessionAttribute("userMessages", $user);
+                return context::SUCCESS;
+            }
         }
-        } catch (Exception $e) {
-        			echo $e;
+        catch (Exception $e) {
+            echo $e;
         }
-
-
     }
 
 
