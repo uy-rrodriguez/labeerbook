@@ -9,8 +9,8 @@
     foreach ($users as $user) {
         echo "<li>";
         
-        $context->setSessionAttribute("chatTemplate", $user);
-        include("$nameApp/view/templates/chat.php");
+        $context->setSessionAttribute("userTemplate", $user);
+        include("$nameApp/view/templates/user.php");
         
         echo "</li>";
     }
