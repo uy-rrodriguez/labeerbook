@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+
+div {
+	border: 1px solid gray;
+	background-color: #CCEEFF;
+}
+
+
+#img-profil {
+    width: 100%;
+    height: auto;
+}
