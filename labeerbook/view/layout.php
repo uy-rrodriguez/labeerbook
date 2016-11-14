@@ -7,7 +7,7 @@
 
 	<title>La Beer Book</title>
 	
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="static/css/labeerbook.css">
 	<link href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
 
