@@ -98,6 +98,21 @@ class mainController{
     }
     
     
+    /*//*//*/
+        Auteur : Q.CASTILLO
+    /*//*//*/
+    public static function friendList($request, $context) {
+        try{
+            $friends = utilisateurTable::getUsers();
+            $context->setSessionAttribute("friends", $friends);
+            return context::SUCCESS;
+        }
+        catch (Exception $e) {
+            $context->setSessionAttribute("msgErreur", $e->getMessage());
+            return context::ERROR;
+        }
+    }
+
 
 	/* ************************************************************************** *
      * 								ACTIONS AJAX

@@ -7,7 +7,7 @@
 
 	<title>La Beer Book</title>
 	
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="labeerbook.css">
 	<link href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
 
@@ -16,9 +16,6 @@
 <body>
     <?php include($nameApp."/view/bandeau.php"); ?>
 
-	<div id="contenu" style="position: relative;">
-		<?php include($template_view); ?>
-	</div>
 
 	 <div class="jumbotron text-center">
 	  <h1>My First Bootstrap Page</h1>
@@ -27,9 +24,7 @@
 	<div class="container">
 	  <div class="row">
 	    <div class="col-sm-4">
-	      <h3>Column 1</h3>
-	      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-	      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+	      <?php include($template_view); ?>
 	    </div>
 	    <div class="col-sm-4">
 	      <h3>Column 2</h3>
