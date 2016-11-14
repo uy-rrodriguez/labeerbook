@@ -18,7 +18,7 @@
 
 	<div class="col-xs-12 col-sm-4">
 		<ul>
-			<li><a href="#">Amis</a></li>
+			<li><a href="?action=friendList">Amis</a></li>
 			<li><a href="#">Chat</a></li>
 			<li><a href="#">Accueil</a></li>
 			<li><a href="#">Deconnexion</a></li>

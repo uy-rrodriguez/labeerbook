@@ -10,3 +10,13 @@ div {
     width: 100%;
     height: auto;
 }
+
+
+.img-profil-miniature{
+	width: 32px;
+	height: 32px;
+}
+
+.noBorder{
+	border: 0px;
+}

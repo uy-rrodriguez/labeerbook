@@ -19,8 +19,8 @@
 
 
 	 <div class="jumbotron text-center">
-	  <h1>My First Bootstrap Page</h1>
-	  <p>Resize this responsive page to see the effect!</p>
+	  <h1>LaBeerBook</h1>
+	  <p>Réalisé par Ricardo Rodriguez et Quentin Castillo</p>
 	</div>
 	<div class="container">
 	  <div class="row">
