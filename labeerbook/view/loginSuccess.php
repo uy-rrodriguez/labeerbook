@@ -9,3 +9,5 @@ Vous êtes désormais connecté, <?php echo $context->getSessionAttribute("user"
 </ul>
 
 <button onclick="logout()">Logout</button>
+
+<?php include($nameApp."/view/templates/profil.php"); ?>
