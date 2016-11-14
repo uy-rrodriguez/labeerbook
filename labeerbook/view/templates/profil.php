@@ -25,6 +25,6 @@
 			<a class="list-group-item disabled" href="#">Chat</a>
 			<a class="list-group-item disabled" href="#">Accueil</a>
 			<a class="list-group-item" href="#" onclick="logout()">Deconnexion</a>
-		</ul>
+		</div>
 	</div>
 </div>
