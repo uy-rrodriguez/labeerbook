@@ -36,7 +36,7 @@ class chatTable {
     public static function getLastChat() {
         $em = dbconnection::getInstance()->getEntityManager();
 
-        $query = $em->createQuery("SELECT c FROM chat c WHERE c.id = (SELECT MAX(c2.id) FROM chat c2)");
+        $query = $em->createQuery("SELECT c FROM chat c JOIN c.post p WHERE p.date = (SELECT MAX(p2.date) FROM chat c2 JOIN c2.post p2)");
         $lastChat = $query->getSingleResult();
 
         return $lastChat;
