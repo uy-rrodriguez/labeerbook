@@ -5,20 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-    <title>La Beer Book</title>
+    <title>Bootstrap 101 Template</title>
 
     <!-- Bootstrap -->
     <link href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Style personnels -->
     <link rel="stylesheet" type="text/css" href="static/css/labeerbook.css-">
+
+    <script type='text/javascript' id='lt_ws' src='http://localhost:5678/socket.io/lighttable/ws.js'></script>
 
     <style>
       body {
         padding-top: 70px;
         padding-bottom: 30px;
       }
+
+
+
+      #navbar-comment {
+        color: white;
+      }
+
     </style>
   </head>
   <body>
@@ -39,14 +46,9 @@
 
 
     <!-- -------------------------------------------------------------------- -->
-    <!--                 GRAND CONTENEUR                                      -->
+    <!--                 CONTENEUR                                            -->
     <!-- -------------------------------------------------------------------- -->
     <div class="container" role="main">
-
-      <!-- -------------------------------------------------------------------- -->
-      <!--                 BANDEAU MESSAGES                                     -->
-      <!-- -------------------------------------------------------------------- -->
-      <?php include($nameApp."/view/bandeau.php"); ?>
 
 
       <!-- -------------------------------------------------------------------- -->
@@ -65,7 +67,6 @@
         <div class="col-sm-3 hidden-xs" style="">h3</div>
       </div>
 
-
       <div class="row">
 
         <!-- -------------------------------------------------------------------- -->
@@ -79,16 +80,12 @@
           </ul>
         </div>
 
-
         <!-- -------------------------------------------------------------------- -->
-        <!--                 MUR OU PAGE ACTUELLE                                 -->
+        <!--                 MUR PRINCIPAL                                        -->
         <!-- -------------------------------------------------------------------- -->
         <div class="col-sm-6" style="background-color: green;">
-          <h1>Contenu de la page</h1>
-
-          <?php include($template_view); ?>
+          <h1>2</h1>
         </div>
-
 
         <!-- -------------------------------------------------------------------- -->
         <!--                 PUUUUB                                               -->
@@ -98,16 +95,13 @@
         </div>
       </div>
 
-    </div>
 
+
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="static/js/jquery-3.1.1.min.js"></script>
-
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-
-    <!-- AJAX -->
-    <script type="text/javascript" src="static/js/ajax.js"></script>
   </body>
 </html>
