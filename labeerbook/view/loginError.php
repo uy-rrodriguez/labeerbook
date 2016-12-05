@@ -1,7 +1,11 @@
-<form method = "POST" action = "./?action=login">
-Login : <br>
-<input type="text" name="login"/><br>
-Password : <br>
-<input type="password" name="password" /><br>
-<input type="submit"/>
+<form method="post" action="./?action=login">
+  <div class="form-group">
+    <label for="login">Login :</label>
+    <input type="text" class="form-control" name="login"/><br>
+
+    <label for="password">Password :</label>
+    <input type="password" class="form-control" name="password" /><br>
+
+    <button type="submit" class="btn btn-default">Submit</button>
+  </div>
 </form>

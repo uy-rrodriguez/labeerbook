@@ -12,14 +12,7 @@
     <link href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Style personnels -->
-    <link rel="stylesheet" type="text/css" href="static/css/labeerbook.css-">
-
-    <style>
-      body {
-        padding-top: 70px;
-        padding-bottom: 30px;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="static/css/labeerbook.css">
   </head>
   <body>
 
@@ -31,8 +24,8 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="#">LaBeerBook</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse text-right" style="color: white;">
-          Réalisé par Ricardo Rodriguez et Quentin Castillo
+        <div id="signature" class="navbar-collapse collapse text-right">
+          @Copyleft q.castillo r.rodriguez
         </div>
       </div>
     </nav>
@@ -52,18 +45,7 @@
       <!-- -------------------------------------------------------------------- -->
       <!--                 PROFIL                                               -->
       <!-- -------------------------------------------------------------------- -->
-      <div class="row">
-        <div class="col-sm-3" style="background-color: black;">
-          <img data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" style="width: 200px; height: 200px;"
-               src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzIwMHgyMDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNThhYWU0NTdjZCB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1OGFhZTQ1N2NkIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjczLjUiIHk9IjEwNC44Ij4yMDB4MjAwPC90ZXh0PjwvZz48L2c+PC9zdmc+"
-               data-holder-rendered="true">
-        </div>
-        <div class="col-sm-6" style="background-color: red;">
-          Nom prenom <br/>
-          Age
-        </div>
-        <div class="col-sm-3 hidden-xs" style="">h3</div>
-      </div>
+      <?php include("labeerbook/view/templates/profil.php"); ?>
 
 
       <div class="row">
@@ -71,21 +53,14 @@
         <!-- -------------------------------------------------------------------- -->
         <!--                 MENU GAUCHE                                          -->
         <!-- -------------------------------------------------------------------- -->
-        <div class="col-sm-3" style="background-color: red;">
-          <ul>
-            <li>Option 1</li>
-            <li>Option 2</li>
-            <li>Option 3</li>
-          </ul>
-        </div>
+        <?php include("labeerbook/view/templates/menu.php"); ?>
+
 
 
         <!-- -------------------------------------------------------------------- -->
         <!--                 MUR OU PAGE ACTUELLE                                 -->
         <!-- -------------------------------------------------------------------- -->
-        <div class="col-sm-6" style="background-color: green;">
-          <h1>Contenu de la page</h1>
-
+        <div id="contenu" class="col-xs-12 col-sm-8 col-md-6">
           <?php include($template_view); ?>
         </div>
 
@@ -93,8 +68,8 @@
         <!-- -------------------------------------------------------------------- -->
         <!--                 PUUUUB                                               -->
         <!-- -------------------------------------------------------------------- -->
-        <div class="col-sm-3 hidden-xs" style="background-color: blue;">
-          <h1>3</h1>
+        <div class="hidden-sm col-md-3" style="background-image: url('static/pub/ad-1/water-back.png');">
+          <?php include("labeerbook/view/templates/pub.php"); ?>
         </div>
       </div>
 

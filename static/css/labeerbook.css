@@ -1,10 +1,40 @@
 @CHARSET "UTF-8";
 
+/* **********************  TEMPLATE  *********************************** */
+
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+/*
 div {
 	border: 1px solid gray;
 	background-color: #CCEEFF;
 }
+*/
 
+#signature {
+  color: white;
+}
+
+#contenu {
+  min-height: 200px;
+  background-color: #ECECEC;
+}
+
+
+/* **********************  PROFIL  ************************************* */
+#profil {
+  margin-bottom: 2px;
+}
+
+/* Bootstrap 3 xs */
+@media(max-width:768px) {
+  #profil {
+    margin-bottom: 2px;
+  }
+}
 
 #img-profil {
     width: 100%;
