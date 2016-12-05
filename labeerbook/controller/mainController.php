@@ -101,7 +101,7 @@ class mainController{
     /*//*//*/
         Auteur : Q.CASTILLO
     /*//*//*/
-    public static function friendList($request, $context) {
+    public static function showFriends($request, $context) {
         try{
             $friends = utilisateurTable::getUsers();
             $context->setSessionAttribute("friends", $friends);
