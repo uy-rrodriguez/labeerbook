@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,21 +13,21 @@
 
     <!-- Style personnels -->
     <link rel="stylesheet" type="text/css" href="static/css/labeerbook.css">
-  </head>
-  <body>
+</head>
+<body>
 
     <!-- -------------------------------------------------------------------- -->
     <!--                 HEADER                                               -->
     <!-- -------------------------------------------------------------------- -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">LaBeerBook</a>
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">LaBeerBook</a>
+            </div>
+            <div id="signature" class="navbar-collapse collapse text-right">
+                @Copyleft q.castillo r.rodriguez
+            </div>
         </div>
-        <div id="signature" class="navbar-collapse collapse text-right">
-          @Copyleft q.castillo r.rodriguez
-        </div>
-      </div>
     </nav>
 
 
@@ -36,42 +36,44 @@
     <!-- -------------------------------------------------------------------- -->
     <div class="container" role="main">
 
-      <!-- -------------------------------------------------------------------- -->
-      <!--                 BANDEAU MESSAGES                                     -->
-      <!-- -------------------------------------------------------------------- -->
-      <?php include($nameApp."/view/bandeau.php"); ?>
-
-
-      <!-- -------------------------------------------------------------------- -->
-      <!--                 PROFIL                                               -->
-      <!-- -------------------------------------------------------------------- -->
-      <?php include("labeerbook/view/templates/profil.php"); ?>
-
-
-      <div class="row">
 
         <!-- -------------------------------------------------------------------- -->
-        <!--                 MENU GAUCHE                                          -->
+        <!--                 BANDEAU MESSAGES                                     -->
         <!-- -------------------------------------------------------------------- -->
-        <?php include("labeerbook/view/templates/menu.php"); ?>
-
+        <?php include($nameApp."/view/bandeau.php"); ?>
 
 
         <!-- -------------------------------------------------------------------- -->
-        <!--                 MUR OU PAGE ACTUELLE                                 -->
+        <!--                 PROFIL                                               -->
         <!-- -------------------------------------------------------------------- -->
-        <div id="contenu" class="col-xs-12 col-sm-8 col-md-6">
-          <?php include($template_view); ?>
+        <?php include("labeerbook/view/templates/profil.php"); ?>
+
+
+        <div class="row">
+
+
+            <!-- -------------------------------------------------------------------- -->
+            <!--                 MENU GAUCHE                                          -->
+            <!-- -------------------------------------------------------------------- -->
+            <?php include("labeerbook/view/templates/menu.php"); ?>
+
+
+
+            <!-- -------------------------------------------------------------------- -->
+            <!--                 MUR OU PAGE ACTUELLE                                 -->
+            <!-- -------------------------------------------------------------------- -->
+            <div id="contenu" class="col-xs-12 col-sm-8 col-md-6">
+                <?php include($template_view); ?>
+            </div>
+
+
+            <!-- -------------------------------------------------------------------- -->
+            <!--                 PUUUUB                                               -->
+            <!-- -------------------------------------------------------------------- -->
+            <div class="hidden-sm col-md-3" style="background-image: url('static/pub/ad-1/water-back.png');">
+                <?php include("labeerbook/view/templates/pub.php"); ?>
+            </div>
         </div>
-
-
-        <!-- -------------------------------------------------------------------- -->
-        <!--                 PUUUUB                                               -->
-        <!-- -------------------------------------------------------------------- -->
-        <div class="hidden-sm col-md-3" style="background-image: url('static/pub/ad-1/water-back.png');">
-          <?php include("labeerbook/view/templates/pub.php"); ?>
-        </div>
-      </div>
 
     </div>
 
@@ -84,5 +86,5 @@
 
     <!-- AJAX -->
     <script type="text/javascript" src="static/js/ajax.js"></script>
-  </body>
+</body>
 </html>

@@ -50,3 +50,67 @@ div {
 .noBorder{
 	border: 0px;
 }
+
+
+/* **********************  MENU  *************************************** */
+/*
+ * Navbar vertical basé sur :
+ *     http://www.bootply.com/idWWJSmrKD
+ */
+
+/* Bootstrap taille xs */
+@media (min-width: 768px) {
+    #nav-menu .navbar-collapse {
+        height: auto;
+        border-top: 0;
+        box-shadow: none;
+        max-height: none;
+        padding-left:0;
+        padding-right:0;
+    }
+
+    #nav-menu .navbar-collapse.collapse {
+        display: block !important;
+        width: auto !important;
+        padding-bottom: 0;
+        overflow: visible !important;
+    }
+
+    #nav-menu .navbar-collapse.in {
+        overflow-x: visible;
+    }
+
+    #nav-menu.navbar {
+        max-width:300px;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .navbar-nav,
+    .navbar-nav > li,
+    .navbar-left,
+    .navbar-right,
+    .navbar-header {
+        float:none !important;
+    }
+
+    .navbar-right .dropdown-menu {
+        left:0;
+        right:auto;
+    }
+
+    .navbar-collapse .navbar-nav.navbar-right:last-child {
+        margin-right: 0;
+    }
+
+    #nav-menu .navbar-header:hover {
+        cursor: pointer;
+
+    }
+
+    #nav-menu .navbar-nav li a:hover,
+    #nav-menu .navbar-nav li a:focus {
+        background-color: #CECECE;
+        color: #000000;
+    }
+}
