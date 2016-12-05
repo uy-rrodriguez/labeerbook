@@ -60,7 +60,7 @@ div {
 
 /* Bootstrap taille xs */
 @media (min-width: 768px) {
-    #nav-menu .navbar-collapse {
+    #nav-menu .navbar-collapse{
         height: auto;
         border-top: 0;
         box-shadow: none;
@@ -69,21 +69,25 @@ div {
         padding-right:0;
     }
 
+
     #nav-menu .navbar-collapse.collapse {
         display: block !important;
         width: auto !important;
         padding-bottom: 0;
         overflow: visible !important;
+
     }
 
     #nav-menu .navbar-collapse.in {
         overflow-x: visible;
+
     }
 
     #nav-menu.navbar {
         max-width:300px;
         margin-right: 0;
         margin-left: 0;
+
     }
 
     .navbar-nav,
@@ -101,6 +105,7 @@ div {
 
     .navbar-collapse .navbar-nav.navbar-right:last-child {
         margin-right: 0;
+
     }
 
     #nav-menu .navbar-header:hover {
@@ -113,4 +118,13 @@ div {
         background-color: #CECECE;
         color: #000000;
     }
+
 }
+/* **********************  USER  *************************************** */
+/* Auteur : Q.CASTILLO
+/* ********************************************************************* */
+#userList{
+    box-shadow: 5px 5px 2px #888888;
+}
+
+
