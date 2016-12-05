@@ -22,7 +22,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">LaBeerBook</a>
+                <a class="navbar-brand" href="?action=login">LaBeerBook</a>
             </div>
             <div id="signature" class="navbar-collapse collapse text-right">
                 @Copyleft q.castillo r.rodriguez
@@ -71,7 +71,7 @@
             <!--                 PUUUUB                                               -->
             <!-- -------------------------------------------------------------------- -->
             <div class="hidden-sm col-md-3" style="background-image: url('static/pub/ad-1/water-back.png');">
-                <?php include("labeerbook/view/templates/pub.php"); ?>
+                <?php //include("labeerbook/view/templates/pub.php"); ?>
             </div>
         </div>
 

@@ -18,7 +18,7 @@
           <li><a href="?action=showMessage&idUtilisateur=1">Show messages</a></li>
           <li><a href="?action=showChats">Show chats</a></li>
           <li><a href="?action=showUsers">Show all users</a></li>
-          <li><a class="disabled" href="#">Amis</a></li>
+          <li><a href="?action=showFriends">Amis</a></li>
           <li><a class="disabled" href="#">Chat</a></li>
           <li><a class="disabled" href="#">Accueil</a></li>
           <li><a href="#" onclick="logout()">Deconnexion</a></li>

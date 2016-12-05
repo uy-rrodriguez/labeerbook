@@ -53,6 +53,26 @@ class utilisateurTable {
 		return $user;
 	}
 
+
+    /*//*//*/
+	    Auteur : Q.CASTILLO
+	    Description : 
+	    	La méthode a pour but de récupérer les utilisateurs 
+	    	qui ont publié sur le mur de l'utilisateur.
+	    Sortie :
+			$user => Tableau d'objets de la classe utilisateur
+	/*//*//*/
+	public static function getFriends(){
+
+		$em =dbconnection::getInstance()->getEntityManager();
+		$query = $em->createQuery("SELECT u FROM utilisateur u 
+											JOIN u.messages m WHERE
+											m.destinataire =  :id");
+
+		$query->setParameter('id',$userProfil->identifiant);
+		$allFriends = $query->getResult();
+		return $allFriends;
+	}
 }
 
 ?>
