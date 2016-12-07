@@ -19,8 +19,8 @@ div {
 }
 
 #contenu {
-  min-height: 200px;
-  background-color: #ECECEC;
+    min-height: 200px;
+    background-color: #ECECEC;
 }
 
 
@@ -39,8 +39,8 @@ div {
 }
 
 #img-profil {
-    width: 100%;
-    height: auto;
+    /*width: 100%;
+    height: auto;*/
 }
 
 
@@ -71,6 +71,12 @@ div {
 #nav-menu .navbar-nav li a:focus {
     background-color: #CECECE;
     color: #000000;
+}
+
+#nav-menu .navbar-nav li a.disabled {
+    background-color: #FDFDFD;
+    color: #DEDEDE;
+    cursor: not-allowed;
 }
 
 /* Bootstrap taille > xs */
@@ -131,3 +137,95 @@ div {
     box-shadow: 6px 6px 3px #CECECE;
 }
 
+
+/* **********************  MESSAGES  *********************************** */
+
+.msg-flotante {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    z-index: 99999;
+}
+
+
+/* **********************  CHAT  *************************************** */
+/* Auteur : R.RODRIGUEZ                                                  */
+/* ********************************************************************* */
+
+#chat {
+    position: absolute;
+    right: 50px;
+    bottom: 20px;
+
+    border: 2px solid #BEBEBE;
+    border-radius: 10px;
+    background-color: #DEDEDE;
+    box-shadow: 2px 2px 2px #CDCDCD;
+
+    cursor: pointer;
+}
+
+#chat > #bulle {
+    padding: 8px 20px;
+}
+
+#chat > #bulle > span {
+    margin-right: 5px;
+}
+
+#chat-contenu {
+    background-color: #FEFEFE;
+    /*height: 90%;*/
+}
+
+#chat.minimise {
+    width: 100px;
+    height: 40px;
+}
+
+#chat.minimise:hover {
+    background-color: #EFEFEF;
+}
+
+#chat.minimise #chat-contenu {
+    display: none;
+}
+
+
+#chat.maximise {
+    width: 300px;
+    height: 450px;
+}
+
+#chat.maximise > #bulle {
+    /*display: none;*/
+}
+
+
+.chat-message {
+    margin: 2px;
+    border: 1px solid #CECECE;
+}
+
+.chat-message-contenu {}
+
+.chat-photo {
+    /*height: 30px;*/
+}
+
+.chat-photo > img {
+    /*width: 100%;
+    height: 100%;*/
+}
+
+.chat-nom {
+    /*height: 10px;*/
+    font-weight: bold;
+}
+
+.chat-texte {
+    /*height: 20px;*/
+    font-size: 10px;
+}

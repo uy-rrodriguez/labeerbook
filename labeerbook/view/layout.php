@@ -34,7 +34,7 @@
     <!-- -------------------------------------------------------------------- -->
     <!--                 GRAND CONTENEUR                                      -->
     <!-- -------------------------------------------------------------------- -->
-    <div class="container" role="main">
+    <div id="tout" class="container" role="main">
 
 
         <!-- -------------------------------------------------------------------- -->
@@ -73,6 +73,11 @@
             <div class="hidden-sm col-md-3" style="background-image: url('static/pub/ad-1/water-back.png');">
                 <?php //include("labeerbook/view/templates/pub.php"); ?>
             </div>
+
+            <!-- -------------------------------------------------------------------- -->
+            <!--                 FENETRE DE CHAT                                      -->
+            <!-- -------------------------------------------------------------------- -->
+            <?php include("labeerbook/view/templates/chat.php"); ?>
         </div>
 
     </div>
@@ -81,10 +86,14 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="static/js/jquery-3.1.1.min.js"></script>
 
+    <!-- jQuery UI -->
+    <script src="static/js/jquery-ui.min.js"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
     <!-- AJAX -->
     <script type="text/javascript" src="static/js/ajax.js"></script>
+    <script type="text/javascript" src="static/js/labeerbook.js"></script>
 </body>
 </html>
