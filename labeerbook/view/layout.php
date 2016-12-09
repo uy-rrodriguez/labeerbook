@@ -19,7 +19,7 @@
     <!-- -------------------------------------------------------------------- -->
     <!--                 HEADER                                               -->
     <!-- -------------------------------------------------------------------- -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav id="navbar-titre" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="?action=login">LaBeerBook</a>
@@ -46,7 +46,7 @@
         <!-- -------------------------------------------------------------------- -->
         <!--                 PROFIL                                               -->
         <!-- -------------------------------------------------------------------- -->
-        <?php include("labeerbook/view/templates/profil.php"); ?>
+        <?php include("labeerbook/view/showProfileSuccess.php"); ?>
 
 
         <div class="row">

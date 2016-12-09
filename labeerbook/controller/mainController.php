@@ -22,21 +22,27 @@ class mainController{
 		if ($context->getSessionAttribute("user") != null) {
 			return context::SUCCESS;
 		}
-		
+
 		else if (!empty($request['login']) || !empty($request['password'])) {
-            $user = utilisateurTable::getUserByLoginAndPass($request['login'], $request['password']);
-            
-			if ($user) {
-                $context->setSessionAttribute("user", $user);
-				$context->setSessionAttribute("msgInfo", "Bonjour " . $user->identifiant);
-                return context::SUCCESS;
-			}
-            else {
-                $context->setSessionAttribute("msgErreur", "Login incorrect !");
+            try {
+                $user = utilisateurTable::getUserByLoginAndPass($request['login'], $request['password']);
+
+                if ($user) {
+                    $context->setSessionAttribute("user", $user);
+                    $context->setSessionAttribute("msgInfo", "Bonjour " . $user->identifiant);
+                    return context::SUCCESS;
+                }
+                else {
+                    $context->setSessionAttribute("msgErreur", "Login incorrect !");
+                    return context::ERROR;
+                }
+            }
+            catch (Exception $e) {
+                $context->setSessionAttribute("msgErreur", $e->getMessage());
                 return context::ERROR;
             }
 		}
-		
+
 		else {
 			return context::ERROR;
 		}
@@ -67,15 +73,15 @@ class mainController{
     public static function showUsers($request, $context) {
     	try {
 		$users = utilisateurTable::getUsers();
-		
+
 		$context->setSessionAttribute("users",$users);
-		
+
 		return context::SUCCESS;
 	}
 	catch(Exception $e) {
 	    $context->setSessionAttribute("msgErreur", $e->getMessage());
             return context::ERROR;
-	}	   
+	}
     }
 
     /*//*//*/
@@ -96,8 +102,8 @@ class mainController{
             return context::ERROR;
         }
     }
-    
-    
+
+
     /*//*//*/
         Auteur : Q.CASTILLO
     /*//*//*/
@@ -114,19 +120,27 @@ class mainController{
     }
 
 
+    /*//*//*/
+        Auteur : R.RODRIGUEZ
+    /*//*//*/
+	public static function editProfile($request,$context) {
+		return context::SUCCESS;
+	}
+
+
 	/* ************************************************************************** *
      * 								ACTIONS AJAX
      * ************************************************************************** */
-    
+
     public static function ajaxLogout($request, $context) {
     	$user = $context->getSessionAttribute("user");
     	$context->setSessionAttribute("user", NULL);
-    
+
     	$data = array("type" => context::NONE);
-    
+
     	if ($user != NULL)
     		$data["msgInfo"] = "Vous êtes bien déconnecté. Ciao " . $user->identifiant;
-    
+
     		return $data;
     }
 
