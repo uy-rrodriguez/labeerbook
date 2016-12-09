@@ -13,6 +13,11 @@ $(function() {
         }
     });
 
+    $( "#chat" ).resizable({
+        handles: "nw, se",
+        cancel: ".minimise"
+    });
+
     $( "#bulle" ).click(function () {
         var chat = $("#chat");
 

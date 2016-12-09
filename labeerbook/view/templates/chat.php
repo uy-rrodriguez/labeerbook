@@ -35,13 +35,15 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui
     }
 ?>
 
-<div id="chat" class="draggable minimise hidden-xs">
+<div id="chat" class="minimise hidden-xs">
     <div id="chat-container" class="container">
 
         <!-- Pour tester la notification d'un nouveau message -->
         <button id="chat-btn-test" onclick="notification_chat($('#chat'));">Simuler notification</button>
 
+        <!-- Elements extras -->
         <img id="chat-biere" class="img" src="static/img/beer-1.png">
+
         <div id="bulle" class="row">
             <span>
                 Chat
