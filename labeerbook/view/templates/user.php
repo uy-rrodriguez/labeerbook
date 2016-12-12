@@ -12,7 +12,7 @@
 	  </div>
 	  
 	  <div class="col-xs-5">
-		<h3><?php echo "<b>" . $userTemplate->identifiant . "</b> <br>"; ?></h3>
+		<h3><?php echo "<b><a href="?action=viewProfil"> " . $userTemplate->identifiant . "</a></b> <br>"; ?></h3>
 	  </div>
 	  
 	  <div class="col-xs-5" style ="text-align:right;">
