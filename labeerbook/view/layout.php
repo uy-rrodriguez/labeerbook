@@ -46,8 +46,9 @@
         <!-- -------------------------------------------------------------------- -->
         <!--                 PROFIL                                               -->
         <!-- -------------------------------------------------------------------- -->
-        <?php include("labeerbook/view/showProfileSuccess.php"); ?>
-
+        <div id="profil" class="row">
+            <?php include("labeerbook/view/showProfileSuccess.php"); ?>
+        </div>
 
         <div class="row">
 

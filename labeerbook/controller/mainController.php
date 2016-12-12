@@ -29,6 +29,7 @@ class mainController{
 
                 if ($user) {
                     $context->setSessionAttribute("user", $user);
+                    $context->setSessionAttribute("userProfile", $user);
                     $context->setSessionAttribute("msgInfo", "Bonjour " . $user->identifiant);
                     return context::SUCCESS;
                 }
@@ -127,6 +128,13 @@ class mainController{
 		return context::SUCCESS;
 	}
 
+	public static function showProfile($request,$context) {
+        //$id = $request["idProfile"];
+        //$user = userData->get($id);
+		//$context->setSessionAttribute("userProfile", $user);
+        return context::SUCCESS;
+	}
+
 
 	/* ************************************************************************** *
      * 								ACTIONS AJAX
@@ -135,13 +143,8 @@ class mainController{
     public static function ajaxLogout($request, $context) {
     	$user = $context->getSessionAttribute("user");
     	$context->setSessionAttribute("user", NULL);
-
-    	$data = array("type" => context::NONE);
-
-    	if ($user != NULL)
-    		$data["msgInfo"] = "Vous êtes bien déconnecté. Ciao " . $user->identifiant;
-
-    		return $data;
+        $context->setSessionAttribute("userProfile", NULL);
+        return context::NONE;
     }
 
 

@@ -5,10 +5,10 @@
 	    	Profil qui s'affichera si l'utilisateur est connecte.
             Si on est dans la page d'un autre utilisateur, on affichera son profil.
     /*//*//*/
-    $userProfil = $context->getSessionAttribute("user");
+    $userProfil = $context->getSessionAttribute("userProfile");
 ?>
 
-<div id="profil" class="row">
+
   <div class="col-xs-4 col-md-3">
     <div id="img-profil-container">
         <img id="img-profil" class="img img-responsive" src="static/img/user-1.png">
@@ -48,4 +48,4 @@
 
   </div>
   <div class="hidden-xs col-sm-3" style=""></div>
-</div>
+

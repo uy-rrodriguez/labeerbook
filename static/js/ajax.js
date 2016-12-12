@@ -22,7 +22,7 @@ function sendRequest(action, onSuccessCallback = function(){}, arrData = []) {
 }
 
 function logout() {
-	sendRequest("ajaxLogout", function(reponse, status, ajaxObj) {
+    sendRequest("ajaxLogout", function(reponse, status, ajaxObj) {
         document.location.href = "?action=login";
 
 		//$("#bandeau-msg #msg-erreur").html(reponse.extra);
@@ -33,5 +33,13 @@ function logout() {
 		//$('#contenu').prepend('<div style="position: absolute;top:0;left:0;width: 100%;height:100%;z-index:2;opacity:0.4;"></div>');
 
 		//$(document.body).append("<button onclick='document.location.href=\"\"'>Aller au login</buton>");
+	})
+}
+
+
+function showProfile() {
+    sendRequest("showProfile", function(reponse, status, ajaxObj) {
+        alert(reponse.data);
+        $("#profil").html(reponse.extra);
 	})
 }
