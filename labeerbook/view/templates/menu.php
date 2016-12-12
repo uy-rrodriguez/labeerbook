@@ -21,6 +21,7 @@
           <li><a href="?action=showFriends">Amis</a></li>
           <li><a class="disabled" href="#">Chat</a></li>
           <li><a class="disabled" href="#">Accueil</a></li>
+          <li><a href="?action=editProfile">Edit profile</a></li>
           <li><a href="#" onclick="logout()">Deconnexion</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
