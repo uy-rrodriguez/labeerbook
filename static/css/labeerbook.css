@@ -188,7 +188,32 @@ div {
     z-index: 99999;
 }
 
+/* **********************  ACCUEIL ************************************* */
+/* Auteur : Q.CASTILLO                                                   */
+/* ********************************************************************* */
+#message{
+    margin : 15px 0px;
+    background-color: silver;
+}
 
+#messAccueil{
+    padding: 15px;
+    font-style:italic;
+    
+}
+
+#shareLike{
+    text-align: right;
+}
+
+#shareLike img{
+    width : 20px;
+    height : 20px;
+}
+
+#shareLike img:hover{
+    cursor: pointer;
+}
 /* **********************  CHAT  *************************************** */
 /* Auteur : R.RODRIGUEZ                                                  */
 /* ********************************************************************* */
