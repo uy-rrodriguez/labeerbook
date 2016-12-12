@@ -3,7 +3,7 @@
 /* **********************  TEMPLATE  *********************************** */
 
 body {
-  padding-top: 70px;
+  padding-top: 75px;
   padding-bottom: 30px;
 }
 
@@ -25,14 +25,16 @@ div {
 
 
 /* **********************  PROFIL  ************************************* */
+/* Auteur : R.RODRIGUEZ                                                  */
+/* ********************************************************************* */
 #profil {
   margin-bottom: 2px;
 }
 
-/* Bootstrap 3 xs */
-@media(max-width:768px) {
+/* Bootstrap taille > xs */
+@media(min-width:768px) {
   #profil {
-    margin-bottom: 2px;
+    margin-bottom: 20px;
   }
 }
 
@@ -53,12 +55,25 @@ div {
 
 
 /* **********************  MENU  *************************************** */
+/* Auteur : R.RODRIGUEZ                                                  */
+/* ********************************************************************* */
+
 /*
  * Navbar vertical basé sur :
  *     http://www.bootply.com/idWWJSmrKD
  */
 
-/* Bootstrap taille xs */
+#nav-menu .navbar-header:hover {
+    cursor: pointer;
+}
+
+#nav-menu .navbar-nav li a:hover,
+#nav-menu .navbar-nav li a:focus {
+    background-color: #CECECE;
+    color: #000000;
+}
+
+/* Bootstrap taille > xs */
 @media (min-width: 768px) {
     #nav-menu .navbar-collapse{
         height: auto;
@@ -107,19 +122,9 @@ div {
         margin-right: 0;
 
     }
-
-    #nav-menu .navbar-header:hover {
-        cursor: pointer;
-
-    }
-
-    #nav-menu .navbar-nav li a:hover,
-    #nav-menu .navbar-nav li a:focus {
-        background-color: #CECECE;
-        color: #000000;
-    }
-
 }
+
+
 /* **********************  USER  *************************************** */
 /* Auteur : Q.CASTILLO
 /* ********************************************************************* */
@@ -128,3 +133,12 @@ div {
 }
 
 
+/* **********************  LOGIN  ************************************** */
+/* Auteur : R.RODRIGUEZ                                                  */
+/* ********************************************************************* */
+#contenu-login {
+    margin-top: 30px;
+    padding: 30px;
+    background-color: #ECECEC;
+    box-shadow: 6px 6px 3px #CECECE;
+}
