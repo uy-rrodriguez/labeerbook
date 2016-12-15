@@ -3,10 +3,11 @@
  */
 
 function processError(ajaxObj, status, errorThrown) {
-	alert(status + ". Erreur : " + errorThrown + ". " + ajaxObj);
+	console.log(status + ". Erreur : " + errorThrown + ". " + ajaxObj);
 }
 
 function sendRequest(action, onSuccessCallback = function(){}, arrData = []) {
+	alert("debut sendRequest");
 	$options = {
 			url			: "labeerbook_ajax.php?action=" + action,
 			async		: true,
@@ -36,10 +37,12 @@ function logout() {
 	})
 }
 
-
-function showProfile() {
-    sendRequest("showProfile", function(reponse, status, ajaxObj) {
-        alert(reponse.data);
-        $("#profil").html(reponse.extra);
-	})
+function editProfile() {
+	alert("debut tests");
+	var arrayEdit = [$('#NameEdit').val(),$('#FirstnameEdit').val(),$('#StatusEdit').val(),$('#PasswordEdit').val()];
+	
+	sendRequest("ajaxEditProfile", function(response, status, ajaxObj) {
+		$('#profil').html(response.data);
+	}, arrayEdit);
 }
+

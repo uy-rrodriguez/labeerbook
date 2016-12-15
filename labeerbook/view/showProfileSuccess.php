@@ -6,6 +6,7 @@
             Si on est dans la page d'un autre utilisateur, on affichera son profil.
     /*//*//*/
     $userProfil = $context->getSessionAttribute("userProfile");
+	$user = $context->getSessionAttribute("user");
 ?>
 
 

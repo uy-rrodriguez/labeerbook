@@ -147,5 +147,19 @@ class mainController{
         return context::NONE;
     }
 
-
+	public static function ajaxEditProfile($request, $context) {
+		var_dump($request);die;
+		$user = $context->getSessionAttribute("user");
+		
+		$user->nom = $request['nom'];
+		$user->prenom = $request['prenom'];
+		$user->statut = $request['status'];
+		$user->pass = $request['password'];
+		
+		
+		utilisateurTable::modifUser($user);
+		
+        return context::SUCCESS;
+    }
+	
 }

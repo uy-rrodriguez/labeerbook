@@ -34,7 +34,21 @@ class utilisateurTable {
 
 		return $user; 
 	}
-
+	
+	/*//*//*/
+	    Auteur : Q.CASTILLO
+	    Description : 
+	    	La méthode a pour but de modifier les parametres du user
+	    Entrée :
+			$id   => Entier 
+	/*//*//*/	
+	public static function modifUser($user) {
+		$em = dbconnection::getInstance()->getEntityManager() ;
+		
+		alert("modifUser");
+		$em->merge($user);
+		$em->flush();
+	}
 
 	/*//*//*/
 	    Auteur : Q.CASTILLO
