@@ -35,59 +35,62 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui
     }
 ?>
 
-<div id="chat" class="minimise hidden-xs">
-    <div id="chat-container" class="container">
+<!--<div id="chat-wrapper">-->
+    <div id="chat" class="maximise hidden-xs">
 
         <!-- Pour tester la notification d'un nouveau message -->
-        <button id="chat-btn-test" onclick="notification_chat($('#chat'));">Simuler notification</button>
-
-        <!-- Elements extras -->
+        <button id="chat-btn-test">Simuler notification</button>
         <img id="chat-biere" class="img" src="static/img/beer-1.png">
 
-        <div id="bulle" class="row">
-            <span>
-                Chat
-            </span>
-            <svg xmlns="http://www.w3.org/2000/svg" style="height:10px;width:10px;">
-                <circle cx="5" cy="5" r="5" fill="green" />
-            </svg>
-        </div>
+        <div id="chat-container">
+
+            <div id="chat-bulle">
+                <span>
+                    Chat
+                </span>
+                <!--
+                <svg xmlns="http://www.w3.org/2000/svg" style="height:10px;width:10px;">
+                    <circle cx="5" cy="5" r="5" fill="green" />
+                </svg>
+                -->
+            </div>
 
 
-        <div id="chat-contenu" class="row">
+            <div id="chat-contenu">
 
-            <?php foreach ($chats as $c) : ?>
+                <?php foreach ($chats as $c) : ?>
 
-                <div class="chat-message container-fluid">
-                    <div class="chat-message-contenu row">
-                        <div class="chat-photo col-sm-3">
-                            <img class="img img-responsive" src="static/img/user-1.png">
+                    <div class="chat-message">
+                        <div class="chat-photo">
+                            <img class="img" src="static/img/user-1.png">
                         </div>
-                        <div class="chat-nom col-sm-8"><?php echo $c->emetteur->identifiant; ?></div>
-                        <div class="chat-texte col-sm-8">
-                            <?php echo $c->post->texte; ?>
-                        </div>
-                    </div>
-                </div>
-
-            <?php endforeach; ?>
-
-        </div>
-
-        <div id="chat-form" class="row">
-            <form method="post" action="#">
-                <div class="form-group container-fluid">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <textarea class="form-control" name="message" placeholder="Message au chat"></textarea>
-                        </div>
-                        <div class="col-sm-4">
-                            <button type="submit" class="btn btn-default">Send</button>
+                        <div class="chat-message-contenu">
+                            <div class="chat-nom"><?php echo $c->emetteur->identifiant; ?></div>
+                            <div class="chat-texte">
+                                <?php echo $c->post->texte; ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
-        </div>
 
+                <?php endforeach; ?>
+
+            </div>
+
+            <div id="chat-form">
+                <form method="post" action="#">
+                    <div class="form-group container-fluid">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <textarea class="form-control" name="message" placeholder="Message au chat"></textarea>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="submit" class="btn btn-default">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
     </div>
-</div>
+<!--</div>-->

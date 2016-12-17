@@ -13,6 +13,7 @@
 
     <!-- Style personnels -->
     <link rel="stylesheet" type="text/css" href="static/css/labeerbook.css">
+    <link rel="stylesheet" type="text/css" href="static/chat/chat.css">
 </head>
 <body>
 
@@ -74,15 +75,15 @@
             <div class="hidden-sm col-md-3" style="background-image: url('static/pub/ad-1/water-back.png');">
                 <?php //include("labeerbook/view/templates/pub.php"); ?>
             </div>
-
-            <!-- -------------------------------------------------------------------- -->
-            <!--                 FENETRE DE CHAT                                      -->
-            <!-- -------------------------------------------------------------------- -->
-            <?php include("labeerbook/view/templates/chat.php"); ?>
         </div>
-
     </div>
-	
+
+
+    <!-- -------------------------------------------------------------------- -->
+    <!--                 FENETRE DE CHAT                                      -->
+    <!-- -------------------------------------------------------------------- -->
+    <?php include("labeerbook/view/templates/chat.php"); ?>
+
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -96,6 +97,7 @@
 
     <!-- AJAX -->
     <script type="text/javascript" src="static/js/ajax.js"></script>
+    <script type="text/javascript" src="static/chat/chat.js"></script>
     <script type="text/javascript" src="static/js/labeerbook.js"></script>
 </body>
 </html>

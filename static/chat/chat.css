@@ -1,0 +1,169 @@
+/* **********************  CHAT  *************************************** */
+/* Auteur : R.RODRIGUEZ                                                  */
+/* ********************************************************************* */
+
+/* ******************* Style general *********************************** */
+#chat {
+    position: absolute;
+    right: 50px;
+    bottom: 20px;
+    left: auto;
+    top: auto;
+
+    border: 2px solid #BEBEBE;
+    border-radius: 10px;
+    background-color: #DEDEDE;
+    box-shadow: 2px 2px 2px #CDCDCD;
+}
+
+#chat-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#chat-bulle {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 40px;
+    padding: 8px 20px;
+    text-align: center;
+}
+
+#chat-bulle:hover {
+    cursor: pointer;
+}
+
+/* ******************* Style chat minimise ***************************** */
+#chat.minimise {
+    width: 100px;
+    height: 40px;
+}
+
+#chat.minimise:hover {
+    background-color: #EFEFEF;
+}
+
+#chat.minimise #chat-contenu {
+    display: none;
+}
+
+#chat.minimise #chat-form {
+    display: none;
+}
+
+
+/* ******************* Style chat maximise ***************************** */
+#chat.maximise {
+    width: 300px;
+    height: 450px;
+    min-width: 250px;
+    min-height: 200px;
+}
+
+#chat.maximise #chat-bulle {
+}
+
+#chat-contenu {
+    height: 100%;
+    overflow-y: auto;
+    background-color: #FEFEFE;
+
+    border: 0px solid rgba(0,0,0,0);
+    border-top-width: 40px;
+    border-bottom-width: 100px;
+    border-radius: 10px;
+}
+
+.chat-message {
+    position: relative;
+    margin: 2px;
+    border: 1px solid #CECECE;
+}
+
+.chat-photo {
+    position: absolute;
+    left: 0px;
+}
+
+.chat-photo > img {
+    width: 50px;
+}
+
+.chat-message-contenu {
+    margin-left: 55px;
+}
+
+.chat-nom {
+    font-weight: bold;
+}
+
+.chat-texte {
+    font-size: 10px;
+}
+
+#chat-form {
+    position: absolute;
+    bottom: 0px;
+    padding: 5px;
+}
+
+
+/* ********** Chat en bzzz (notification de nouveau message) *********** */
+#chat #chat-biere {
+    display: none;
+}
+#chat.chat-bzzz #chat-biere {
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: -15px;
+    width: 30px;
+    height: 30px;
+}
+
+#chat #chat-btn-test {
+    position: absolute;
+    top: -30px;
+    left: -40px;
+    width: 150px;
+}
+
+/* ***************** Styles par defaut pour Resizable ****************** */
+.ui-resizable { position: relative;}
+.ui-resizable-handle { position: absolute;font-size: 0.1px; display: block; }
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
+.ui-resizable-n { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0; }
+.ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0; }
+.ui-resizable-e { cursor: e-resize; width: 7px; right: -5px; top: 0; height: 100%; }
+.ui-resizable-w { cursor: w-resize; width: 7px; left: -5px; top: 0; height: 100%; }
+.ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
+.ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
+.ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
+.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
+
+/* ***************** Styles personnels pour Resizable ****************** */
+#chat.maximise .ui-resizable-se {
+    border: 3px solid black;
+    border-top : None;
+    border-left: none;
+    border-radius: 1px;
+}
+
+#chat.maximise .ui-resizable-nw {
+    border: 3px solid black;
+    border-bottom: None;
+    border-right: none;
+    border-radius: 1px;
+}
+
+#chat.minimise .ui-resizable-handle {
+    cursor: default;
+}
+
+#chat.chat-bzzz .ui-resizable-handle {
+    border: None;
+}
+
