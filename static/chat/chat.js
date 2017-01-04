@@ -2,6 +2,7 @@
 /* Auteur : R.RODRIGUEZ                                                  */
 /* Description :                                                         */
 /*     Fonctions pour controller le fonctionnement du chat.              */
+/*     On definit une classe JavaScript "Chat".                          */
 /* ********************************************************************* */
 
 // Initialisation du chat après le chargement de la page
@@ -33,6 +34,25 @@ var Chat = function () {
 
         beforeState: {}
     };
+
+
+
+    // Cet attribut va nous indiquer si les chqts on ete recuperes de la
+    // BDD une premiere fois
+    var chatsLoaded = false;
+
+    // On va activer le timer (interval) qui va chercher les derniers chats toutes les 15 secondes.
+    // (sendRequest est defini dans ajax.js)
+    /*
+    setInterval(
+        function() {
+            sendRequest("ajaxGetLastChats", function(response, status, ajaxObj) {
+                $('#chat-contenu').append(response.data);
+                parent.notification();
+            });
+        }
+        , 3000);
+    */
 
 
     /* ***********************  REDIMENSIONER CHAT  ************************ */
@@ -169,7 +189,7 @@ var Chat = function () {
         );
     }
 
-    $( "#chat-btn-test" ).click(this.notification);
+    //$( "#chat-btn-test" ).click(this.notification);
 
 
 
@@ -212,6 +232,13 @@ var Chat = function () {
             end_callback: function () {
                 $chat.removeClass("minimise");
                 $chat.addClass("maximise");
+
+                // On va charger par AJAX les chats existants
+                // (showChats se trouve dans le fichier ajax.js)
+                if (! this.chatsLoaded) {
+                    showChats();
+                    this.chatsLoaded = true;
+                }
             }
         };
 

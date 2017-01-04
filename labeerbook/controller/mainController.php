@@ -85,25 +85,6 @@ class mainController{
 	}
     }
 
-    /*//*//*/
-    	Auteur : R.RODRIGUEZ
-    /*//*//*/
-    public static function showChats($request, $context) {
-        try {
-            $chats = chatTable::getChats();
-            $lastChat = chatTable::getLastChat();
-
-            $context->setSessionAttribute("chats", $chats);
-            $context->setSessionAttribute("lastChat", $lastChat);
-
-            return context::SUCCESS;
-        }
-        catch (Exception $e) {
-            $context->setSessionAttribute("msgErreur", $e->getMessage());
-            return context::ERROR;
-        }
-    }
-
 
     /*//*//*/
         Auteur : Q.CASTILLO
@@ -150,16 +131,62 @@ class mainController{
 	public static function ajaxEditProfile($request, $context) {
 		var_dump($request);die;
 		$user = $context->getSessionAttribute("user");
-		
+
 		$user->nom = $request['nom'];
 		$user->prenom = $request['prenom'];
 		$user->statut = $request['status'];
 		$user->pass = $request['password'];
-		
-		
+
+
 		utilisateurTable::modifUser($user);
-		
+
         return context::SUCCESS;
     }
-	
+
+    /*//*//*/
+    	Auteur : R.RODRIGUEZ
+        Description:
+            On recupere tous les chats de la BDD et on stocke l'ID du dernier.
+    /*//*//*/
+    public static function ajaxShowChats($request, $context) {
+        try {
+            $chats = chatTable::getChats();
+
+            $context->setSessionAttribute("chats", $chats);
+
+            // On stocke le dernier ID
+            $context->setSessionAttribute("lastChatID", $chats[count($chats)-1]->id);
+
+            return context::SUCCESS;
+        }
+        catch (Exception $e) {
+            $context->setSessionAttribute("msgErreur", $e->getMessage());
+            return context::ERROR;
+        }
+    }
+
+    /*//*//*/
+    	Auteur : R.RODRIGUEZ
+        Description:
+            On recupere tous les chats de la BDD qui ont ete crees apres la derniere recherche.
+            On stocke l'ID du dernier.
+    /*//*//*/
+    public static function ajaxGetLastChats($request, $context) {
+        try {
+            // On recupere la liste des derniers chats
+            $lastChat = chatTable::getLastChats($context->getSessionAttribute("lastChatID"));
+            $context->setSessionAttribute("lastChats", $lastChats);
+
+            // On stocke le dernier ID
+            if (count($chats) > 0)
+                $context->setSessionAttribute("lastChatID", $chats[count($chats)-1]->id);
+
+            return context::SUCCESS;
+        }
+        catch (Exception $e) {
+            $context->setSessionAttribute("msgErreur", $e->getMessage());
+            return context::ERROR;
+        }
+    }
+
 }

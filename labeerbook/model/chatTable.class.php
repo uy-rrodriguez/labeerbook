@@ -9,7 +9,7 @@ class chatTable {
     /*//*//*/
 	    Auteur : R.RODRIGUEZ
 	    Description :
-	    	La méthode a pour but de récupérer tous les chats dans la BDD.
+	    	La méthode a pour but de récupérer tous les chats dans la BDD, mais limité aux 20 derniers.
 	    Sortie :
 			$chats => Liste de tous les chats dans le système.
 	/*//*//*/
@@ -17,29 +17,35 @@ class chatTable {
     public static function getChats() {
         $em = dbconnection::getInstance()->getEntityManager();
 
-        $chatRepository = $em->getRepository('chat');
-        $chats = $chatRepository->findAll();
+        //$chatRepository = $em->getRepository('chat');
+        //$chats = $chatRepository->findAll();
+        $query = $em->createQuery("SELECT c FROM chat c JOIN c.post p ORDER BY c.id DESC");
+                    //->setMaxResults(20);
+        $chats = $query->getResult();
+        $chats = array_reverse($chats);
 
-        return $chats; // Miaouuu
+        return $chats;
     }
 
 
     /*//*//*/
 	    Auteur : R.RODRIGUEZ
 	    Description :
-	    	La méthode a pour but de récupérer le dernier chat publié.
+	    	La méthode a pour but de récupérer les derniers chats publiés.
             On utilise un Query personnalisée.
 	    Sortie :
-			$lastChat => Correspond au dernier chat publié, le seul trouvé par la requête.
+			$lastChats => Correspondent aux derniers chats publiés.
 	/*//*//*/
 
-    public static function getLastChat() {
+    public static function getLastChats($lastID) {
         $em = dbconnection::getInstance()->getEntityManager();
 
-        $query = $em->createQuery("SELECT c FROM chat c JOIN c.post p WHERE p.date = (SELECT MAX(p2.date) FROM chat c2 JOIN c2.post p2)");
-        $lastChat = $query->getSingleResult();
+        //$query = $em->createQuery("SELECT c FROM chat c JOIN c.post p WHERE p.date = (SELECT MAX(p2.date) FROM chat c2 JOIN c2.post p2)");
+        $query = $em->createQuery("SELECT c FROM chat c JOIN c.post p WHERE c.id > :lastID ORDER BY c.id ASC");
+        $query->setParameter("lastID", $lastID);
+        $lastChats = $query->getResult();
 
-        return $lastChat;
+        return $lastChats;
     }
 
 }

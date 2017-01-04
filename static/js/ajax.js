@@ -7,12 +7,11 @@ function processError(ajaxObj, status, errorThrown) {
 }
 
 function sendRequest(action, onSuccessCallback = function(){}, arrData = []) {
-	alert("debut sendRequest");
+	//alert("debut sendRequest");
 	$options = {
 			url			: "labeerbook_ajax.php?action=" + action,
 			async		: true,
 			data		: arrData,
-			dataType	: "json",
 			method		: "POST",
 
 			error		: processError,
@@ -25,24 +24,28 @@ function sendRequest(action, onSuccessCallback = function(){}, arrData = []) {
 function logout() {
     sendRequest("ajaxLogout", function(reponse, status, ajaxObj) {
         document.location.href = "?action=login";
-
-		//$("#bandeau-msg #msg-erreur").html(reponse.extra);
-		//$("#bandeau-msg #msg-info").html(reponse.data.msgInfo);
-
-		// http://stackoverflow.com/a/14461824
-		//$('#contenu').fadeTo('slow',.6);
-		//$('#contenu').prepend('<div style="position: absolute;top:0;left:0;width: 100%;height:100%;z-index:2;opacity:0.4;"></div>');
-
-		//$(document.body).append("<button onclick='document.location.href=\"\"'>Aller au login</buton>");
 	})
 }
 
 function editProfile() {
 	alert("debut tests");
 	var arrayEdit = [$('#NameEdit').val(),$('#FirstnameEdit').val(),$('#StatusEdit').val(),$('#PasswordEdit').val()];
-	
+
 	sendRequest("ajaxEditProfile", function(response, status, ajaxObj) {
-		$('#profil').html(response.data);
+		$('#profil').html(response);
 	}, arrayEdit);
+}
+
+
+/*//*//*/
+    Auteur : R.RODRIGUEZ
+    Description :
+        Cette fonction est appele une seule fois, la premiere fois que la fenetre de chat est maximise.
+        On va chercher tous les chats existants dans la BDD.
+/*//*//*/
+function showChats() {
+	sendRequest("ajaxShowChats", function(response, status, ajaxObj) {
+		$('#chat-contenu').html(response);
+	});
 }
 

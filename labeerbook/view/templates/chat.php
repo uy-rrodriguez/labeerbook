@@ -13,7 +13,12 @@
 	echo ".";
     */
 
+    // On recupere les chats de la session
+    $chats = $context->getSessionAttribute("chats");
+
+
     // Contenu de test
+    /*
     $chats = array();
 
     for ($i = 0; $i < 10; $i++) {
@@ -33,10 +38,11 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui
 
         $chats[] = $c;
     }
+    */
 ?>
 
 <!--<div id="chat-wrapper">-->
-    <div id="chat" class="maximise hidden-xs">
+    <div id="chat" class="minimise hidden-xs">
 
         <!-- Pour tester la notification d'un nouveau message -->
         <button id="chat-btn-test">Simuler notification</button>
@@ -57,23 +63,7 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui
 
 
             <div id="chat-contenu">
-
-                <?php foreach ($chats as $c) : ?>
-
-                    <div class="chat-message">
-                        <div class="chat-photo">
-                            <img class="img" src="static/img/user-1.png">
-                        </div>
-                        <div class="chat-message-contenu">
-                            <div class="chat-nom"><?php echo $c->emetteur->identifiant; ?></div>
-                            <div class="chat-texte">
-                                <?php echo $c->post->texte; ?>
-                            </div>
-                        </div>
-                    </div>
-
-                <?php endforeach; ?>
-
+                <!-- Ici on va afficher la liste de chats recupere par AJAX -->
             </div>
 
             <div id="chat-form">
