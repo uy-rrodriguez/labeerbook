@@ -7,15 +7,17 @@
 
 // Initialisation du chat après le chargement de la page
 $(function() {
-    Chat();
+    leChat = Chat();
 });
 
 
 // Initialisation. On crée un objet global qui stocke le chat
 var Chat = function () {
 
-    // Pointeur vers la classe
-    var parent = this;
+    // Pointeur vers la classe. Comme on fait appel a des fonctions dans
+    // d'autres fonctions, il faut avoir une reference pour acceder aux
+    // attributs de l'unique instance du chat.
+    var $this = this;
 
     // Div contenant le chat
     var $chat = $("#chat");
@@ -37,22 +39,57 @@ var Chat = function () {
 
 
 
-    // Cet attribut va nous indiquer si les chqts on ete recuperes de la
-    // BDD une premiere fois
-    var chatsLoaded = false;
+    /* ********************  CHARGER / ACTUALISER CHAT  ******************** */
+    /* Description :                                                         */
+    /*     On définit un attribut qui va indiquer si les messages du chat    */
+    /*     ont été chargés. Lorsque l'on maximise le chat pour la première   */
+    /*     fois, on va aller chercher dans la BDD tous les messages.         */
+    /*                                                                       */
+    /*     On active aussi un intervalle qui va récupérer les derniers msgs  */
+    /*     toutes les X secondes. Pendant la charge initiale du chat, c'est- */
+    /*     à-dire lors de la première maximisation, on va bloquer ce         */
+    /*     comportement pour éviter de faire des requêtes inutiles.          */
+    /*                                                                       */
+    /*     En plus, si la fenêtre de chat est minimisée et les msgs n'ont    */
+    /*     jamais été chargés (si le chat n'a jamais été maximisé) on        */
+    /*     déclenche l'animation d'arrivée de nouveaux messages (le bzzz),   */
+    /*     mais on n'ajoute pas ces messages dans le corps du chat. La       */
+    /*     logique derriere ca c'est que si la liste de chat n'a jamais été  */
+    /*     récupérée, lors de la première maximisation on va automatiquement */
+    /*     récupérér ces messages-là.                                        */
+    /* ********************************************************************* */
+
+    // Cet attribut va nous indiquer si les messages on été récupérés de la
+    // BDD une première fois
+    this.chatsLoaded = false;
 
     // On va activer le timer (interval) qui va chercher les derniers chats toutes les 15 secondes.
     // (sendRequest est defini dans ajax.js)
-    /*
-    setInterval(
-        function() {
-            sendRequest("ajaxGetLastChats", function(response, status, ajaxObj) {
-                $('#chat-contenu').append(response.data);
-                parent.notification();
-            });
-        }
-        , 3000);
-    */
+    this.intervalID = 0;
+    this.activate_update = function() {
+        $this.intervalID = setInterval(
+            function() {
+                sendRequest("ajaxGetLastChats", function(response, status, ajaxObj) {
+                    //console.log(response);
+
+                    if (response && response.data != "") {
+                        $this.notification();
+
+                        if ($this.chatsLoaded)
+                            $('#chat-contenu').append(response);
+                    }
+                });
+            }
+            , 5000);
+    }
+
+    this.deactivate_update = function() {
+        clearInterval($this.intervalID);
+    }
+
+
+    // On active l'intervalle d'actualisation du chat
+    this.activate_update();
 
 
     /* ***********************  REDIMENSIONER CHAT  ************************ */
@@ -173,6 +210,7 @@ var Chat = function () {
     /* ********************************************************************* */
 
     this.notification = function () {
+        $chat.addClass("on-animation");
         $chat.addClass("chat-bzzz");
 
         $chat.animate( { left: "-=5px" }, 100, "linear" );
@@ -185,6 +223,7 @@ var Chat = function () {
         $chat.animate( { left: "+=5px" }, 100, "linear",
             function () {
                 $chat.removeClass("chat-bzzz");
+                $chat.removeClass("on-animation");
             }
         );
     }
@@ -210,6 +249,10 @@ var Chat = function () {
     /* ********************************************************************* */
 
     this.minimize = function () {
+        $chat.addClass("on-animation");
+        $chat.removeClass("maximized");
+        $chat.addClass("minimized");
+
         $chat.animate(
             {
                 width: resizeData.minimized.width + "px",
@@ -218,8 +261,12 @@ var Chat = function () {
             200,
             "linear",
             function () {
-                $chat.addClass("minimise");
-                $chat.removeClass("maximise");
+                $chat.removeClass("on-animation");
+
+                // Peut-être l'actualisation avait été désactivée par le
+                // maximize, du coup on l'active
+                this.deactivate_update();
+                this.activate_update();
             }
         );
     }
@@ -230,19 +277,25 @@ var Chat = function () {
             height:       resizeData.maximized.height,
 
             end_callback: function () {
-                $chat.removeClass("minimise");
-                $chat.addClass("maximise");
+                $chat.removeClass("on-animation");
+                $chat.removeClass("minimized");
+                $chat.addClass("maximized");
 
                 // On va charger par AJAX les chats existants
-                // (showChats se trouve dans le fichier ajax.js)
-                if (! this.chatsLoaded) {
-                    showChats();
-                    this.chatsLoaded = true;
+                // (sendRequest se trouve dans le fichier ajax.js)
+                if (! $this.chatsLoaded) {
+                    sendRequest("ajaxShowChats", function(response, status, ajaxObj) {
+                        $('#chat-contenu').html(response);
+                        $this.chatsLoaded = true;
+
+                        // On active l'intervale d'actualisation
+                        $this.activate_update();
+                    });
                 }
             }
         };
 
-        parent.maximize_start(data);
+        $this.maximize_start(data);
     }
 
     /*
@@ -305,6 +358,11 @@ var Chat = function () {
     */
 
     this.maximize_start = function (data) {
+        $chat.addClass("on-animation");
+
+        // On désactive l'intervale d'actualisation
+        $this.deactivate_update();
+
         var actualW = $chat.width();
         var actualH = $chat.height();
         var diffW = data.width - actualW;
@@ -317,7 +375,7 @@ var Chat = function () {
 
         $chat.animate( {width: w, height: h}, speed, "linear",
             function() {
-                parent.maximize_animate(data);
+                $this.maximize_animate(data);
             }
         );
     }
@@ -330,7 +388,7 @@ var Chat = function () {
 
         // Fin de la recursion
         if (Math.abs(diffW) < 1 && Math.abs(diffH) < 1) {
-            parent.maximize_end(data);
+            $this.maximize_end(data);
             return;
         }
 
@@ -347,7 +405,7 @@ var Chat = function () {
 
         $chat.animate( {width: w, height: h}, speed, "linear",
             function() {
-                parent.maximize_animate(data);
+                $this.maximize_animate(data);
             }
         );
     }
@@ -366,14 +424,20 @@ var Chat = function () {
         }
 
         else {
-            // Cas chat minimise
-            if ($chat.hasClass("minimise"))
-                parent.maximize();
+            // Pendant les animations on ne peut rien faire
+            if (! $chat.hasClass("on-animation")) {
+                // Cas chat minimise
+                if ($chat.hasClass("minimized"))
+                    $this.maximize();
 
-            // Cas chat maximise
-            else
-                parent.minimize();
+                // Cas chat maximise
+                else if ($chat.hasClass("maximized"))
+                    $this.minimize();
+            }
         }
     });
+
+
+    return this;
 
 }

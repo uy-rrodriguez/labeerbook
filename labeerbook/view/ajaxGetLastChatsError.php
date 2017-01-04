@@ -1,1 +1,1 @@
-Erreur lors de la recherche de tous les chats
+<div>Erreur lors de la recherche des derniers chats</div>

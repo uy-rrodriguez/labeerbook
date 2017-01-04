@@ -36,34 +36,35 @@
     cursor: pointer;
 }
 
-/* ******************* Style chat minimise ***************************** */
-#chat.minimise {
+
+/* ******************* Style chat minimized ***************************** */
+#chat.minimized {
     width: 100px;
     height: 40px;
 }
 
-#chat.minimise:hover {
+#chat.minimized:hover {
     background-color: #EFEFEF;
 }
 
-#chat.minimise #chat-contenu {
+#chat.minimized #chat-contenu {
     display: none;
 }
 
-#chat.minimise #chat-form {
+#chat.minimized #chat-form {
     display: none;
 }
 
 
-/* ******************* Style chat maximise ***************************** */
-#chat.maximise {
+/* ******************* Style chat maximized ***************************** */
+#chat.maximized {
     width: 300px;
     height: 450px;
     min-width: 250px;
     min-height: 200px;
 }
 
-#chat.maximise #chat-bulle {
+#chat.maximized #chat-bulle {
 }
 
 #chat-contenu {
@@ -77,11 +78,32 @@
     border-radius: 10px;
 }
 
+#chat-contenu #img-loading {
+    width: 100%;
+    height: 80%;
+    max-height: 200px;
+}
+
 .chat-message {
     position: relative;
     margin: 2px;
     border: 1px solid #CECECE;
     min-height: 55px;
+}
+
+/* Style pour les nouveaux messages */
+.chat-message.chat-nouveau:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border: 7px solid rgb(227,88,57);
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    padding: 0;
 }
 
 .chat-photo {
@@ -131,6 +153,8 @@
     left: -15px;
     width: 30px;
     height: 30px;
+
+    z-index: 1000000;
 }
 
 #chat #chat-btn-test {
@@ -154,21 +178,21 @@
 .ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
 
 /* ***************** Styles personnels pour Resizable ****************** */
-#chat.maximise .ui-resizable-se {
+#chat.maximized .ui-resizable-se {
     border: 3px solid black;
     border-top : None;
     border-left: none;
     border-radius: 1px;
 }
 
-#chat.maximise .ui-resizable-nw {
+#chat.maximized .ui-resizable-nw {
     border: 3px solid black;
     border-bottom: None;
     border-right: none;
     border-radius: 1px;
 }
 
-#chat.minimise .ui-resizable-handle {
+#chat.minimized .ui-resizable-handle {
     cursor: default;
 }
 

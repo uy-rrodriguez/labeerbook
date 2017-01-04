@@ -42,10 +42,11 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui
 ?>
 
 <!--<div id="chat-wrapper">-->
-    <div id="chat" class="minimise hidden-xs">
+    <div id="chat" class="minimized hidden-xs">
 
         <!-- Pour tester la notification d'un nouveau message -->
-        <button id="chat-btn-test">Simuler notification</button>
+        <!-- <button id="chat-btn-test">Simuler notification</button> -->
+
         <img id="chat-biere" class="img" src="static/img/beer-1.png">
 
         <div id="chat-container">
@@ -64,6 +65,9 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui
 
             <div id="chat-contenu">
                 <!-- Ici on va afficher la liste de chats recupere par AJAX -->
+                <svg id="img-loading">
+                    <image xlink:href="static/img/loading.svg" src="static/img/loading.png" width="100%" height="100%" />
+                </svg>
             </div>
 
             <div id="chat-form">

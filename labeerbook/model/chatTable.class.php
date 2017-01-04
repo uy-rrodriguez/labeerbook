@@ -19,8 +19,8 @@ class chatTable {
 
         //$chatRepository = $em->getRepository('chat');
         //$chats = $chatRepository->findAll();
-        $query = $em->createQuery("SELECT c FROM chat c JOIN c.post p ORDER BY c.id DESC");
-                    //->setMaxResults(20);
+        $query = $em->createQuery("SELECT c FROM chat c JOIN c.post p ORDER BY c.id DESC")
+                    ->setMaxResults(20);
         $chats = $query->getResult();
         $chats = array_reverse($chats);
 

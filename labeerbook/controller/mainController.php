@@ -174,12 +174,12 @@ class mainController{
     public static function ajaxGetLastChats($request, $context) {
         try {
             // On recupere la liste des derniers chats
-            $lastChat = chatTable::getLastChats($context->getSessionAttribute("lastChatID"));
+            $lastChats = chatTable::getLastChats($context->getSessionAttribute("lastChatID"));
             $context->setSessionAttribute("lastChats", $lastChats);
 
             // On stocke le dernier ID
-            if (count($chats) > 0)
-                $context->setSessionAttribute("lastChatID", $chats[count($chats)-1]->id);
+            if (count($lastChats) > 0)
+                $context->setSessionAttribute("lastChatID", $lastChats[count($lastChats)-1]->id);
 
             return context::SUCCESS;
         }

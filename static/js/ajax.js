@@ -35,17 +35,3 @@ function editProfile() {
 		$('#profil').html(response);
 	}, arrayEdit);
 }
-
-
-/*//*//*/
-    Auteur : R.RODRIGUEZ
-    Description :
-        Cette fonction est appele une seule fois, la premiere fois que la fenetre de chat est maximise.
-        On va chercher tous les chats existants dans la BDD.
-/*//*//*/
-function showChats() {
-	sendRequest("ajaxShowChats", function(response, status, ajaxObj) {
-		$('#chat-contenu').html(response);
-	});
-}
-
