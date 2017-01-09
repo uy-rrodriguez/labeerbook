@@ -128,6 +128,12 @@ class mainController{
         return context::NONE;
     }
 
+
+    /*//*//*/
+        Auteur : Q.CASTILLO
+        Description:
+            On recupere les nouvelles infos du profil et on modifie
+    /*//*//*/
 	public static function ajaxEditProfile($request, $context) {
 		var_dump($request);die;
 		$user = $context->getSessionAttribute("user");
@@ -141,6 +147,56 @@ class mainController{
 		utilisateurTable::modifUser($user);
 
         return context::SUCCESS;
+    }
+
+
+    /*//*//*/
+        Auteur : Q.CASTILLO
+        Description:
+            On recupere le message à afficher avec l'id de celui qui écrit et l'id du profil
+            sur lequel on se trouve
+    /*//*//*/
+    public static function ajaxAddMessage($request, $context) {
+        try{
+            $userActuel = context->getSessionAttribute("user");
+
+            $newMessage = MessageTable::createMessage($message,$userActuel->id);
+            return context::SUCCESS;
+
+        }catch  (Exception $e){
+            $context->setSessionAttribute("msgErreur", $e->getMessage());
+            return context::ERROR;
+        }
+    }
+
+
+    /*//*//*/
+        Auteur : Q.CASTILLO
+        Description:
+            Affiche tous les messages
+    /*//*//*/
+    public static function ajaxGetMessages($request, $context) {
+        try{
+
+            $messages = messageTable::getMessages();
+
+            $context->setSessionAttribute("messages", $messages);
+            return context::SUCCESS;
+            
+        } catch( Exception $e){
+            $context->setSessionAttribute("msgErreur", $e->getMessage());
+            return context::ERROR;
+        }
+    }
+
+    /*//*//*/
+        Auteur : Q.CASTILLO
+        Description:
+            Récupère l'id de la personne sur qui on a cliqué et nous envoie 
+            sur son profil.
+    /*//*//*/
+    public static function ajaxShowProfile($request, $context) {
+
     }
 
     /*//*//*/

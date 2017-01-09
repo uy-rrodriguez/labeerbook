@@ -9,4 +9,7 @@ $(function() {
     $( "#img-profil-biere" ).draggable({
         containment: "#img-profil-container"
     });
+
+
+    $( "#formProfile button" ).click(addMessage);
 });
