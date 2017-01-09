@@ -189,4 +189,28 @@ class mainController{
         }
     }
 
+    /*//*//*/
+    	Auteur : R.RODRIGUEZ
+        Description:
+            On ajoute le nouveau message de chat et on récupère tous les chats de la BDD
+            crées après la dernière mise-à-jour.
+    /*//*//*/
+    public static function ajaxSendChatMessage($request, $context) {
+        $user = $context->getSessionAttribute("user");
+
+        // Ajout du message
+        chatTable::addChatMessage($user, $request['texte']);
+
+        /*
+        // Listing des derniers messages
+        $lastChats = chatTable::getLastChats($context->getSessionAttribute("lastChatID"));
+
+        // On stocke le dernier ID
+        if (count($lastChats) > 0)
+            $context->setSessionAttribute("lastChatID", $lastChats[count($lastChats)-1]->id);
+        */
+
+        return "Chat crée OK";
+    }
+
 }

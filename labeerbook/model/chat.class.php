@@ -26,7 +26,7 @@ class chat {
 	// On a supprime @Column(type="integer") pour obtenir un objet post dans
 	// l'attribut $post.
 	/**
-     *  @OneToOne(targetEntity="post", inversedBy="chats", fetch="LAZY")
+     *  @OneToOne(targetEntity="post", fetch="LAZY")
      *  @JoinColumn(name="post", referencedColumnName="id")
 	 */
 	public $post;

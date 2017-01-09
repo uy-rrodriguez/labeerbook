@@ -25,17 +25,6 @@ class post {
 	/** @Column(type="string", length=200) */
 	public $image;
 
-
-	/**
-	 *  @OneToMany(targetEntity="message", mappedBy="post", fetch="LAZY")
-	 */
-	public $messages;
-
-	/**
-	 *  @OneToMany(targetEntity="chat", mappedBy="post", fetch="LAZY")
-	 */
-	public $chats;
-
 }
 
 
