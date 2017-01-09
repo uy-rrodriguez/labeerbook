@@ -20,6 +20,8 @@ class mainController{
 
 	public static function login($request, $context) {
 		if ($context->getSessionAttribute("user") != null) {
+            // on fait appel à la méthode récupérant les messages
+            mainController::ajaxGetMessages($request, $context);
 			return context::SUCCESS;
 		}
 
@@ -31,6 +33,10 @@ class mainController{
                     $context->setSessionAttribute("user", $user);
                     $context->setSessionAttribute("userProfile", $user);
                     $context->setSessionAttribute("msgInfo", "Bonjour " . $user->identifiant);
+                    
+                    // on fait appel à la méthode récupérant les messages
+                     mainController::ajaxGetMessages($request, $context);
+
                     return context::SUCCESS;
                 }
                 else {
@@ -158,7 +164,7 @@ class mainController{
     /*//*//*/
     public static function ajaxAddMessage($request, $context) {
         try{
-            $userActuel = context->getSessionAttribute("user");
+            $userActuel = $context->getSessionAttribute("user");
 
             $newMessage = MessageTable::createMessage($message,$userActuel->id);
             return context::SUCCESS;
@@ -178,7 +184,7 @@ class mainController{
     public static function ajaxGetMessages($request, $context) {
         try{
 
-            $messages = messageTable::getMessages();
+            $messages = messageTable::getMessages($context);
 
             $context->setSessionAttribute("messages", $messages);
             return context::SUCCESS;

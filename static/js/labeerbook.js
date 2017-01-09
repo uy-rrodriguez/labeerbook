@@ -12,4 +12,5 @@ $(function() {
 
 
     $( "#formProfile button" ).click(addMessage);
+    
 });

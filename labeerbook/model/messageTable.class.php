@@ -13,14 +13,19 @@ class messageTable {
 	    	sur notre mur
 	    
 	/*//*//*/
-	public static function getMessages(){
+	public static function getMessages($context){
         $em = dbconnection::getInstance()->getEntityManager();
 
+        $user = $context->getSessionAttribute("user");
         //$chatRepository = $em->getRepository('chat');
         //$chats = $chatRepository->findAll();
-        $query = $em->createQuery("SELECT m FROM message m")
+        $query = $em->createQuery("SELECT m FROM message m WHERE m.destinataire = :id")
                     ->setMaxResults(20);
+        $query->setParameter("id", $user->id);
         $messages = $query->getResult();
+
+
+        
 
         return $messages;
 	}

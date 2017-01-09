@@ -1,3 +1,3 @@
 <?php
-	include($nameApp."/view/templates/accueil.php");
+	include($nameApp."/view/ajaxGetMessagesSuccess.php");
 ?>
