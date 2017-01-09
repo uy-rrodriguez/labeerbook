@@ -48,6 +48,33 @@ class chatTable {
         return $lastChats;
     }
 
+
+    /*//*//*/
+	    Auteur : R.RODRIGUEZ
+	    Description :
+	    	La méthode a pour but de stocker un nouveau message de chat.
+	/*//*//*/
+
+    public static function addChatMessage($emetteur, $texte) {
+        $em = dbconnection::getInstance()->getEntityManager();
+
+        $post = new post();
+        $post->texte = $texte;
+        $post->date = new DateTime(date("Y-m-d H:i:s"));
+        $post->image = "";
+        $em->persist($post);
+        $em->flush();
+
+        $emetteur = $em->find("utilisateur", $emetteur->id);
+
+        $chat = new chat();
+        $chat->post = $post;
+        $chat->emetteur = $emetteur;
+
+        $em->persist($chat);
+        $em->flush();
+    }
+
 }
 
 ?>

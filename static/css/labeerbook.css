@@ -9,22 +9,12 @@
 /* **********************  TEMPLATE  *********************************** */
 
 body {
+  padding-top: 70px;
   padding-bottom: 30px;
 }
 
-/*
-div {
-	border: 1px solid gray;
-	background-color: #CCEEFF;
-}
-*/
-
 #signature {
   color: white;
-}
-
-#tout {
-    margin-top: 70px;
 }
 
 #contenu {

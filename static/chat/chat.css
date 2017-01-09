@@ -65,6 +65,7 @@
 }
 
 #chat.maximized #chat-bulle {
+  border-bottom: 1px solid #CECECE;
 }
 
 #chat-contenu {
@@ -87,8 +88,9 @@
 .chat-message {
     position: relative;
     margin: 2px;
+    padding-right: 2px;
     border: 1px solid #CECECE;
-    min-height: 55px;
+    /*min-height: 50px;*/
 }
 
 /* Style pour les nouveaux messages */
@@ -138,7 +140,33 @@
 #chat-form {
     position: absolute;
     bottom: 0px;
+    left: 0px;
+    right: 0px;
     padding: 5px;
+    border-top: 1px solid #CECECE;
+}
+
+#chat-form .form-group {
+    position: relative;
+}
+
+#chat-form-col-text {
+    padding-right: 80px;
+}
+
+#chat-form-col-btn textarea {
+    width: 100%;
+}
+
+#chat-form-col-btn {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 70px;
+}
+
+#chat-form-col-btn button {
+    width: 100%;
 }
 
 

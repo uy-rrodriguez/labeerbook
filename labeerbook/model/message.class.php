@@ -4,21 +4,21 @@
     Auteur : Q.CASTILLO/R.RODRIGUEZ
 /*//*//*/
 
-/** 
+/**
  * @Entity
  * @Table(name="fredouil.message")
  */
 class message {
 
-	/** 
+	/**
 	 *  @Id @Column(type="integer")
 	 *  @GeneratedValue
-	 */ 
+	 */
 	public $id;
 
     // On a supprime @Column(type="integer") pour obtenir un objet utilisateur dans
 	// l'attribut $emetteur. La récupération est faite de manière LAZY.
-	/** 
+	/**
 	 *  @OneToOne(targetEntity="utilisateur", inversedBy="messages", fetch="LAZY")
 	 *  @JoinColumn(name="emetteur", referencedColumnName="id")
 	 */
@@ -26,7 +26,7 @@ class message {
 
     // On a supprime @Column(type="integer") pour obtenir un objet utilisateur dans
 	// l'attribut $destinataire. La récupération est faite de manière LAZY.
-	/** 
+	/**
 	 *  @OneToOne(targetEntity="utilisateur", fetch="LAZY")
 	 *  @JoinColumn(name="destinataire", referencedColumnName="id")
 	 */
@@ -41,7 +41,7 @@ class message {
 	public $parent;
 
     // On a supprime @Column(type="integer") pour obtenir un objet post dans
-	// l'attribut $post. La récup+eration est faite de manière LAZY.
+	// l'attribut $post. La récupération est faite de manière LAZY.
 	/**
      *  @OneToOne(targetEntity="post", fetch="LAZY")
 	 *  @JoinColumn(name="post", referencedColumnName="id")

@@ -63,20 +63,29 @@ var Chat = function () {
     // BDD une première fois
     this.chatsLoaded = false;
 
+    // Fonction qui ajoute des nouveaux messages au chat
+    this.add_new_messages = function (messages) {
+        if ($this.chatsLoaded) {
+            console.log("Scroll height avant : " + $('#chat-contenu').prop("scrollHeight"));
+            $('#chat-contenu').append(messages);
+            console.log("Scroll height apres : " + $('#chat-contenu').prop("scrollHeight"));
+            $('#chat-contenu').animate({ scrollTop: $('#chat-contenu').prop("scrollHeight")}, 500);
+        }
+    }
+
     // On va activer le timer (interval) qui va chercher les derniers chats toutes les 15 secondes.
     // (sendRequest est defini dans ajax.js)
     this.intervalID = 0;
+
     this.activate_update = function() {
         $this.intervalID = setInterval(
             function() {
                 sendRequest("ajaxGetLastChats", function(response, status, ajaxObj) {
                     //console.log(response);
 
-                    if (response && response.data != "") {
+                    if (response) {
                         $this.notification();
-
-                        if ($this.chatsLoaded)
-                            $('#chat-contenu').append(response);
+                        $this.add_new_messages(response);
                     }
                 });
             }
@@ -112,19 +121,23 @@ var Chat = function () {
             right:      this.style.right ? this.style.right : "auto"
         };
 
+        /*
         $chat.css("top", $chat.position().top);
         $chat.css("left", $chat.position().left);
         $chat.css("bottom", "auto");
         $chat.css("right", "auto");
+        */
     }
 
     this.resize_stop = function (event, ui) {
         var state = resizeData.beforeState;
 
+        /*
         $chat.css("top", state.top);
         $chat.css("left", state.left);
         $chat.css("bottom", state.bottom);
         $chat.css("right", state.right);
+        */
 
         // On stocke dans l'objet chat l'info. de la dernière taille
         resizeData.maximized = {
@@ -135,7 +148,7 @@ var Chat = function () {
 
     // Initialisation de resizable
     $chat.resizable({
-        handles: "se",
+        handles: "se, nw",
         cancel: ".minimise",
         start: this.resize_start,
         stop: this.resize_stop
@@ -265,8 +278,8 @@ var Chat = function () {
 
                 // Peut-être l'actualisation avait été désactivée par le
                 // maximize, du coup on l'active
-                this.deactivate_update();
-                this.activate_update();
+                $this.deactivate_update();
+                $this.activate_update();
             }
         );
     }
@@ -297,65 +310,6 @@ var Chat = function () {
 
         $this.maximize_start(data);
     }
-
-    /*
-    function maximize_get_position(target) {
-        var win = $(window);
-        var left = target.position.left;
-        var top = target.position.top;
-        var right = win.width() - (left + target.width());
-        var bottom = win.height() - (top + target.height());
-        return {
-            left:     left,
-            right:    right,
-            top:      top,
-            bottom:   bottom
-        };
-    }
-
-    function maximize_fix_position(target) {
-        var pos = maximize_get_position(target);
-        var state = {
-            top:        target.css("top") ? target.css("top") : "auto",
-            bottom:     target.css("bottom") ? target.css("bottom") : "auto",
-            left:       target.css("left") ? target.css("left") : "auto",
-            right:      target.css("right") ? target.css("right") : "auto",
-            position:   target.css("position") ? target.css("position") : "auto"
-        };
-
-        // Fixed left / right
-        if (pos.left < pos.right) {
-            target.css("right", "auto");
-        }
-        else {
-            target.css("left", "auto");
-            target.css("right", pos.right);
-        }
-
-        // Fixed top / bottom
-        if (pos.top < pos.bottom) {
-            target.css("bottom", "auto");
-        }
-        else {
-            target.css("top", "auto");
-            target.css("bottom", pos.bottom);
-        }
-
-        target.css("position", "fixed");
-
-        return state;
-    }
-
-    function maximize_restore_position(target, state) {
-        var pos = maximize_get_position(target);
-
-        target.css("position") = state.position;
-        target.css("top") = state.top;
-        target.css("bottom") = state.bottom;
-        target.css("left") = state.left;
-        target.css("right") = state.right;
-    }
-    */
 
     this.maximize_start = function (data) {
         $chat.addClass("on-animation");
@@ -437,6 +391,38 @@ var Chat = function () {
         }
     });
 
+
+    /* *************************  ENVOI DE MESSAGES  *********************** */
+    /* Description :                                                         */
+    /*     Fonction pour envoyer un message au chat à travers AJAX.          */
+    /*     On envoi le message et on met à jour la liste de chats.           */
+    /* ********************************************************************* */
+
+    // Fonction qui envoie un nouveau message au chat
+    this.send_new_message = function () {
+        // On envoi le message
+        sendRequest(
+            "ajaxSendChatMessage",
+            function(response, status, ajaxObj) {
+
+                // Puis, on recupere les derniers chats
+                sendRequest("ajaxGetLastChats", function(response, status, ajaxObj) {
+                    // La réponse doit contenir les derniers messages publiés. Celui
+                    // qui vient d'être envoyé inclus.
+                    if (response) {
+                        $this.add_new_messages(response);
+                    }
+                });
+            },
+            {"texte" : $('#chat #form-new-message textarea').val()}
+        );
+    }
+
+    // Envoi de messages avec le bouton "Send"
+    $("#chat #form-new-message button").click(this.send_new_message);
+
+    // Envoi de messages avec la touche "Entrer"
+    //$("#chat #form-new-message button").keypress(function () {}this.send_new_message);
 
     return this;
 

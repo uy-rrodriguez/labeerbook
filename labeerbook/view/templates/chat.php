@@ -5,40 +5,8 @@
             Affiche une bulle, si on clique sur la bulle on affiche une fenetre de chat.
 	/*//*//*/
 
-    /*
-	$chatTemplate = $context->getSessionAttribute("chatTemplate");
-	echo "<b>" . $chatTemplate->post->texte . "</b>";
-	echo ", créé par <b>" . $chatTemplate->emetteur->identifiant . "</b>";
-	echo ", le <b>" . $chatTemplate->post->date->format("d/m/Y H:i") . "</b>";
-	echo ".";
-    */
-
     // On recupere les chats de la session
     $chats = $context->getSessionAttribute("chats");
-
-
-    // Contenu de test
-    /*
-    $chats = array();
-
-    for ($i = 0; $i < 10; $i++) {
-
-        $e = new utilisateur();
-        $e->identifiant = "Test";
-
-        $p = new post();
-        $p->texte = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco";
-        $p->date = "10/12/2016 2:57";
-
-        $c = new chat();
-        $c->id = $i + 1;
-        $c->emetteur = $e;
-        $c->post = $p;
-
-        $chats[] = $c;
-    }
-    */
 ?>
 
 <!--<div id="chat-wrapper">-->
@@ -71,15 +39,13 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, qui
             </div>
 
             <div id="chat-form">
-                <form method="post" action="#">
-                    <div class="form-group container-fluid">
-                        <div class="row">
-                            <div class="col-sm-8">
-                                <textarea class="form-control" name="message" placeholder="Message au chat"></textarea>
-                            </div>
-                            <div class="col-sm-4">
-                                <button type="submit" class="btn btn-default">Send</button>
-                            </div>
+                <form id="form-new-message" method="post" action="#">
+                    <div class="form-group">
+                        <div id="chat-form-col-text">
+                            <textarea class="form-control" name="message" placeholder="Message au chat"></textarea>
+                        </div>
+                        <div id="chat-form-col-btn">
+                            <button type="button" class="btn btn-default">Send</button>
                         </div>
                     </div>
                 </form>
