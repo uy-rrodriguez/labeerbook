@@ -1,7 +1,11 @@
 <?php 
 	$allMessages = $context->getSessionAttribute("messages");
 
-for ($i = 0; $i < sizeof($allMessages); $i++) { ?>
+	foreach ($allMessages as $message) {
+
+?>
+
+
 <div id = "message" >
 
 	<div id = "messAccueil" class = "row" >
@@ -13,9 +17,8 @@ for ($i = 0; $i < sizeof($allMessages); $i++) { ?>
 		</div>
 
 		<div class = "col-xs-9" >
-			<b>Quentin Castillo : </b><br>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+			<b><?php echo $message->emetteur->identifiant; ?> : </b><br>
+			<?php echo $message->post->texte; ?>
 		</div>
 	</div>
 
@@ -29,5 +32,8 @@ for ($i = 0; $i < sizeof($allMessages); $i++) { ?>
 	</div>
 
 </div>
+
+
+
 <?php } ?>
 

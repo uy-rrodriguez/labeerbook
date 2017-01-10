@@ -27,6 +27,11 @@ function logout() {
 	})
 }
 
+/*//*//*/
+    Auteur : Q.CASTILLO
+    Description:
+    On récupère les infos à éditer
+/*//*//*/
 function editProfile() {
 	alert("debut tests");
 	var arrayEdit = [$('#NameEdit').val(),$('#FirstnameEdit').val(),$('#StatusEdit').val(),$('#PasswordEdit').val()];
@@ -34,4 +39,34 @@ function editProfile() {
 	sendRequest("ajaxEditProfile", function(response, status, ajaxObj) {
 		$('#profil').html(response);
 	}, arrayEdit);
+}
+
+/*//*//*/
+    Auteur : Q.CASTILLO
+    Description:
+    On récupère le message à publier
+/*//*//*/
+function addMessage(){
+	
+	var message = $('#formProfile textarea').val();
+	
+	sendRequest("ajaxAddMessage", function(response, status, ajaxObj) {
+
+		document.location.href = "?action=login";
+	}, message);
+	
+}
+
+
+/*//*//*/
+    Auteur : Q.CASTILLO
+    Description:
+    On affiche les messages
+/*//*//*/
+function getMessage(){
+	
+	sendRequest("ajaxGetMessages", function(response, status, ajaxObj) {
+		$('#message').html(reponse);	
+	});
+	
 }

@@ -1,7 +1,11 @@
 <?php 
 	$allMessages = $context->getSessionAttribute("messages");
 
-for ($i = 0; $i < sizeof($allMessages); $i++) { ?>
+	for ($i = 0; $i < sizeof($allMessages); $i++) { 
+
+?>
+
+
 <div id = "message" >
 
 	<div id = "messAccueil" class = "row" >
@@ -29,5 +33,8 @@ for ($i = 0; $i < sizeof($allMessages); $i++) { ?>
 	</div>
 
 </div>
+
+
+
 <?php } ?>
 
