@@ -8,6 +8,7 @@
 // Initialisation du chat après le chargement de la page
 $(function() {
     leChat = Chat();
+    leChat.maximize();
 });
 
 
@@ -63,13 +64,16 @@ var Chat = function () {
     // BDD une première fois
     this.chatsLoaded = false;
 
+    // Finction qui scrolle à la fin de la liste de messages
+    this.scroll_end = function () {
+        $('#chat-contenu').animate({ scrollTop: $('#chat-contenu').prop("scrollHeight")}, 500);
+    }
+
     // Fonction qui ajoute des nouveaux messages au chat
     this.add_new_messages = function (messages) {
         if ($this.chatsLoaded) {
-            console.log("Scroll height avant : " + $('#chat-contenu').prop("scrollHeight"));
             $('#chat-contenu').append(messages);
-            console.log("Scroll height apres : " + $('#chat-contenu').prop("scrollHeight"));
-            $('#chat-contenu').animate({ scrollTop: $('#chat-contenu').prop("scrollHeight")}, 500);
+            $this.scroll_end();
         }
     }
 
@@ -224,24 +228,24 @@ var Chat = function () {
 
     this.notification = function () {
         $chat.addClass("on-animation");
-        $chat.addClass("chat-bzzz");
 
-        $chat.animate( { left: "-=5px" }, 100, "linear" );
+        // Animation du bzzz avec CSS3 @keyframes
+        // Ajout de la classe qui va déclencher l'animation CSS3
+        //console.log(document.body.style.animationName /*if( style.animationName !== undefined ) { animationSupport = true; }*/);
+        $chat.addClass("chat-bzzz-anim");
 
-        for (var i = 0; i < 5; i++) {
-            $chat.animate( { left: "+=10px" }, 100, "linear" );
-            $chat.animate( { left: "-=10px" }, 100, "linear" );
-        }
-
-        $chat.animate( { left: "+=5px" }, 100, "linear",
-            function () {
-                $chat.removeClass("chat-bzzz");
-                $chat.removeClass("on-animation");
-            }
-        );
+        // À la fin de l'animation, on supprime la classe
+        // .one va déclencher une seule fois la fonction que l'on définie
+        //
+        // http://blog.teamtreehouse.com/using-jquery-to-detect-when-css3-animations-and-transitions-end
+        //
+        $chat.one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+            $chat.removeClass("on-animation");
+            $chat.removeClass('chat-bzzz-anim');
+        });
     }
 
-    //$( "#chat-btn-test" ).click(this.notification);
+    //$( "#chat-bzzz-test" ).click(this.notification);
 
 
 
@@ -263,109 +267,48 @@ var Chat = function () {
 
     this.minimize = function () {
         $chat.addClass("on-animation");
+        $chat.addClass("chat-minimize-anim");
+
         $chat.removeClass("maximized");
         $chat.addClass("minimized");
 
-        $chat.animate(
-            {
-                width: resizeData.minimized.width + "px",
-                height: resizeData.minimized.height + "px"
-            },
-            200,
-            "linear",
-            function () {
-                $chat.removeClass("on-animation");
+        $chat.one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+            $chat.removeClass("on-animation");
+            $chat.removeClass('chat-minimize-anim');
 
-                // Peut-être l'actualisation avait été désactivée par le
-                // maximize, du coup on l'active
-                $this.deactivate_update();
-                $this.activate_update();
-            }
-        );
+            $chat.removeClass("maximized");
+            $chat.addClass("minimized");
+        });
     }
 
     this.maximize = function () {
-        var data = {
-            width:        resizeData.maximized.width,
-            height:       resizeData.maximized.height,
-
-            end_callback: function () {
-                $chat.removeClass("on-animation");
-                $chat.removeClass("minimized");
-                $chat.addClass("maximized");
-
-                // On va charger par AJAX les chats existants
-                // (sendRequest se trouve dans le fichier ajax.js)
-                if (! $this.chatsLoaded) {
-                    sendRequest("ajaxShowChats", function(response, status, ajaxObj) {
-                        $('#chat-contenu').html(response);
-                        $this.chatsLoaded = true;
-
-                        // On active l'intervale d'actualisation
-                        $this.activate_update();
-                    });
-                }
-            }
-        };
-
-        $this.maximize_start(data);
-    }
-
-    this.maximize_start = function (data) {
         $chat.addClass("on-animation");
+        $chat.removeClass("minimized");
+        $chat.addClass("maximized");
+        $chat.addClass("chat-maximize-anim");
 
-        // On désactive l'intervale d'actualisation
+        // On désactive l'intervale d'actualisation pendant l'animation
         $this.deactivate_update();
 
-        var actualW = $chat.width();
-        var actualH = $chat.height();
-        var diffW = data.width - actualW;
-        var diffH = data.height - actualH;
-        var extraW = diffW * 0.15;
-        var extraH = diffH * 0.15;
-        var w = data.width + extraW + "px";
-        var h = data.height + extraH + "px";
-        var speed = 200;
+        $chat.one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+            $chat.removeClass("on-animation");
+            $chat.removeClass('chat-maximize-anim');
 
-        $chat.animate( {width: w, height: h}, speed, "linear",
-            function() {
-                $this.maximize_animate(data);
+            // On va charger par AJAX les chats existants
+            // (sendRequest se trouve dans le fichier ajax.js)
+            if (! $this.chatsLoaded) {
+                sendRequest("ajaxShowChats", function(response, status, ajaxObj) {
+                    $('#chat-contenu').html(response);
+                    $this.chatsLoaded = true;
+
+                    // On scrolle au dernier message
+                    $this.scroll_end();
+
+                    // On active l'intervale d'actualisation
+                    $this.activate_update();
+                });
             }
-        );
-    }
-
-    this.maximize_animate = function (data) {
-        var actualW = $chat.width();
-        var actualH = $chat.height();
-        var diffW = data.width - actualW;
-        var diffH = data.height - actualH;
-
-        // Fin de la recursion
-        if (Math.abs(diffW) < 1 && Math.abs(diffH) < 1) {
-            $this.maximize_end(data);
-            return;
-        }
-
-        // Sinon
-        var extraW = diffW * 0.4;
-        var extraH = diffH * 0.4;
-
-        var operW = (diffW > 0 ? "+=" : "-=");
-        var operH = (diffH > 0 ? "+=" : "-=");
-        var w = operW + Math.abs(diffW + extraW) + "px";
-        var h = operH + Math.abs(diffH + extraH) + "px";
-
-        var speed = 80;
-
-        $chat.animate( {width: w, height: h}, speed, "linear",
-            function() {
-                $this.maximize_animate(data);
-            }
-        );
-    }
-
-    this.maximize_end = function (data) {
-        data.end_callback();
+        });
     }
 
     // Initialisation maximiser / minimiser
@@ -400,29 +343,48 @@ var Chat = function () {
 
     // Fonction qui envoie un nouveau message au chat
     this.send_new_message = function () {
-        // On envoi le message
-        sendRequest(
-            "ajaxSendChatMessage",
-            function(response, status, ajaxObj) {
+        // On envoi le message, s'il n'est pas vide
+        var texte = $('#chat-form textarea').val();
 
-                // Puis, on recupere les derniers chats
-                sendRequest("ajaxGetLastChats", function(response, status, ajaxObj) {
-                    // La réponse doit contenir les derniers messages publiés. Celui
-                    // qui vient d'être envoyé inclus.
-                    if (response) {
-                        $this.add_new_messages(response);
-                    }
-                });
-            },
-            {"texte" : $('#chat #form-new-message textarea').val()}
-        );
+        if (texte.trim() != "") {
+            sendRequest(
+                "ajaxSendChatMessage",
+                function(response, status, ajaxObj) {
+
+                    // On nettoye le formulaire
+                    $("#chat-form textarea").val("");
+
+                    // Puis, on recupere les derniers chats
+                    sendRequest("ajaxGetLastChats", function(response, status, ajaxObj) {
+                        // La réponse doit contenir les derniers messages publiés. Celui
+                        // qui vient d'être envoyé inclus.
+                        if (response) {
+                            $this.add_new_messages(response);
+                        }
+                    });
+                },
+                {"texte" : texte}
+            );
+        }
     }
 
     // Envoi de messages avec le bouton "Send"
-    $("#chat #form-new-message button").click(this.send_new_message);
+    $("#chat-form button").click(this.send_new_message);
 
     // Envoi de messages avec la touche "Entrer"
-    //$("#chat #form-new-message button").keypress(function () {}this.send_new_message);
+    $("#chat-form textarea").keypress(function (evt) {
+        if (evt.which == 13) {
+            if (evt.ctrlKey) {
+                // On va écrire un Entrer
+                $("#chat-form textarea").val($("#chat-form textarea").val() + "\n");
+            }
+            else {
+                // On évite l'écriture du dernier Entrer et on envoit le message
+                evt.preventDefault();
+                $this.send_new_message();
+            }
+        }
+    });
 
     return this;
 

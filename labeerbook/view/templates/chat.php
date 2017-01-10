@@ -13,9 +13,9 @@
     <div id="chat" class="minimized hidden-xs">
 
         <!-- Pour tester la notification d'un nouveau message -->
-        <!-- <button id="chat-btn-test">Simuler notification</button> -->
+        <!-- <button id="chat-bzzz-test">Simuler notification</button> -->
 
-        <img id="chat-biere" class="img" src="static/img/beer-1.png">
+        <img id="chat-bzzz-biere" class="img" src="static/img/beer-1.png">
 
         <div id="chat-container">
 
@@ -39,13 +39,19 @@
             </div>
 
             <div id="chat-form">
-                <form id="form-new-message" method="post" action="#">
+                <form method="post" action="#">
                     <div class="form-group">
                         <div id="chat-form-col-text">
                             <textarea class="form-control" name="message" placeholder="Message au chat"></textarea>
                         </div>
                         <div id="chat-form-col-btn">
                             <button type="button" class="btn btn-default">Send</button>
+                        </div>
+                        <div>
+                            <span class="label label-info">[Entrer] envoie le message.</span>
+                        </div>
+                        <div>
+                            <span class="label label-info">[Ctrl]+[Enter] retour à la ligne.</span>
                         </div>
                     </div>
                 </form>

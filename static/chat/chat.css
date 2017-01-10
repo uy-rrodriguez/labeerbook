@@ -2,6 +2,59 @@
 /* Auteur : R.RODRIGUEZ                                                  */
 /* ********************************************************************* */
 
+
+/* ***************************  ANIMATIONS  **************************** */
+
+/* ***************************** Maximize ****************************** */
+@keyframes maximize-anim {
+    15% {transform: scale(1.05);}
+    30% {transform: scale(0.95);}
+    45% {transform: scale(1.01);}
+    60% {transform: scale(0.99);}
+    75% {transform: scale(1.0);}
+}
+
+.chat-maximize-anim {
+  animation-name: maximize-anim;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+/* ***************************** Minimize ****************************** */
+@keyframes minimize-anim {
+    15% {transform: scale(0.7);}
+    30% {transform: scale(1.01);}
+    40% {transform: scale(0.9);}
+    55% {transform: scale(1.0);}
+    /*
+    to {
+        width: 100px;
+        height: 40px;
+    }
+    */
+}
+
+.chat-minimize-anim {
+    animation-name: minimize-anim;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+}
+
+.chat-minimize-anim #chat-contenu,
+.chat-minimize-anim #chat-form {
+    display: none;
+}
+
+/* **************************** Notification *************************** */
+@keyframes bzzz-anim {
+  30% {transform: translate(10px,0);}
+  60% {transform: translate(-20px,0);}
+  90% {transform: translate(10px,0);}
+}
+
+
+
 /* ******************* Style general *********************************** */
 #chat {
     position: absolute;
@@ -41,16 +94,15 @@
 #chat.minimized {
     width: 100px;
     height: 40px;
+    max-width: 100px;
+    max-height: 40px;
 }
 
 #chat.minimized:hover {
     background-color: #EFEFEF;
 }
 
-#chat.minimized #chat-contenu {
-    display: none;
-}
-
+#chat.minimized #chat-contenu,
 #chat.minimized #chat-form {
     display: none;
 }
@@ -68,15 +120,15 @@
   border-bottom: 1px solid #CECECE;
 }
 
-#chat-contenu {
-    height: 100%;
+#chat.maximized #chat-contenu {
+    position: absolute;
+    top: 40px;
+    left: 0px;
+    right: 0px;
+    bottom: 122px;
+
     overflow-y: auto;
     background-color: #FEFEFE;
-
-    border: 0px solid rgba(0,0,0,0);
-    border-top-width: 40px;
-    border-bottom-width: 100px;
-    border-radius: 10px;
 }
 
 #chat-contenu #img-loading {
@@ -125,6 +177,14 @@
     font-weight: bold;
 }
 
+.chat-date {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    font-size: 10px;
+    color: #BEBEBE;
+}
+
 .chat-texte {
     font-size: 10px;
 }
@@ -148,6 +208,7 @@
 
 #chat-form .form-group {
     position: relative;
+    margin: 0px;
 }
 
 #chat-form-col-text {
@@ -170,28 +231,6 @@
 }
 
 
-/* ********** Chat en bzzz (notification de nouveau message) *********** */
-#chat #chat-biere {
-    display: none;
-}
-#chat.chat-bzzz #chat-biere {
-    display: block;
-    position: absolute;
-    top: -20px;
-    left: -15px;
-    width: 30px;
-    height: 30px;
-
-    z-index: 1000000;
-}
-
-#chat #chat-btn-test {
-    position: absolute;
-    top: -30px;
-    left: -40px;
-    width: 150px;
-}
-
 /* ***************** Styles par defaut pour Resizable ****************** */
 .ui-resizable { position: relative;}
 .ui-resizable-handle { position: absolute;font-size: 0.1px; display: block; }
@@ -206,25 +245,63 @@
 .ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
 
 /* ***************** Styles personnels pour Resizable ****************** */
+#chat.maximized .ui-resizable-handle {
+    width: 0px;
+    height: 0px;
+    /*background-color: #BEBEBE;*/
+    border: 10px solid #BEBEBE;
+}
+
 #chat.maximized .ui-resizable-se {
-    border: 3px solid black;
-    border-top : None;
-    border-left: none;
-    border-radius: 1px;
+    border-top-color : transparent;
+    border-left-color: transparent;
+    border-bottom-right-radius: 8px;
 }
 
 #chat.maximized .ui-resizable-nw {
-    border: 3px solid black;
-    border-bottom: None;
-    border-right: none;
-    border-radius: 1px;
+    left: 1px;
+    top: 1px;
+    border-bottom-color : transparent;
+    border-right-color: transparent;
+    border-top-left-radius: 8px;
 }
 
 #chat.minimized .ui-resizable-handle {
     cursor: default;
 }
 
-#chat.chat-bzzz .ui-resizable-handle {
-    border: None;
+
+/* ********** Chat en bzzz (notification de nouveau message) *********** */
+#chat #chat-bzzz-biere {
+    display: none;
+}
+#chat.chat-bzzz-anim #chat-bzzz-biere {
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: -15px;
+    width: 30px;
+    height: 30px;
+
+    z-index: 1000000;
 }
 
+#chat #chat-bzzz-test {
+    position: absolute;
+    top: -30px;
+    left: -40px;
+    width: 150px;
+}
+
+.chat-bzzz-anim {
+  position: relative;
+  animation-name: bzzz-anim;
+  animation-duration: 0.15s;
+  animation-iteration-count: 4;
+  animation-timing-function: linear;
+  animation-fill-mode: initial;
+}
+
+#chat.chat-bzzz-anim .ui-resizable-handle {
+    border: None;
+}
