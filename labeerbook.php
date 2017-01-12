@@ -11,17 +11,19 @@ $nameApp = "labeerbook";
 require_once 'lib/core.php';
 require_once $nameApp.'/controller/mainController.php';
 
-
-//action par défaut
-$action = "login";
-
-if(key_exists("action", $_REQUEST))
-	$action =  $_REQUEST['action'];
-
 session_start();
 
 $context = context::getInstance();
 $context->init($nameApp);
+
+
+// Action par défaut
+$action = "login";
+
+// Contrôl d'accès
+if(key_exists("action", $_REQUEST) && $context->getSessionAttribute("user") !== null)
+	$action =  $_REQUEST['action'];
+
 
 $view=$context->executeAction($action, $_REQUEST);
 

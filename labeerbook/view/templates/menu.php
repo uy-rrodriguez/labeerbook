@@ -15,14 +15,10 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="?action=showMessage&idUtilisateur=1">Show messages</a></li>
-          <li><a href="?action=showChats">Show chats</a></li>
-          <li><a href="?action=showUsers">Show all users</a></li>
-          <li><a href="?action=showFriends">Amis</a></li>
-          <li><a class="disabled" href="#">Chat</a></li>
-          <li><a class="disabled" href="#">Accueil</a></li>
-          <li><a href="?action=editProfile">Edit profile</a></li>
-          <li><a href="#" onclick="logout()">Deconnexion</a></li>
+          <li><a href="?action=showProfile">Accueil</a></li>
+          <li><a href="?action=showFriends">Les amis</a></li>
+          <li><a href="?action=showProfile">Mon profil</a></li>
+          <li><a href="#" onclick="logout()">Se déconnecter</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </nav>

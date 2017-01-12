@@ -1,30 +1,32 @@
 <?php
 	/*//*//*/
-		Auteur : Q.CASTILLO
+		Auteur : Q.CASTILLO (TP 3)
+        Modifications finales : R.RODRIGUEZ (TP 4)
 	/*//*//*/
+
 	$userTemplate = $context->getSessionAttribute("userTemplate");
+    $AVATAR_FOLDER = "upload/avatar";
 ?>
 
-<div id="userList" class = "row">
+<div class="item-liste-users col-xs-6 col-sm-4">
+    <a href="?action=showProfile&idProfile=<?php echo $userTemplate->id; ?>">
+        <div class="row">
 
-	  <div class="col-xs-2">
-	  	 <img id="img-profil" src="static/img/profil.png">
-	  </div>
-	  
-	  <div class="col-xs-5">
-		<h3><?php echo "<b><a href='?action=viewProfil'> " . $userTemplate->identifiant . "</a></b> <br>"; ?></h3>
-	  </div>
-	  
-	  <div class="col-xs-5" style ="text-align:right;">
-	    <h3>
-	      En ligne
-	      <svg xmlns="http://www.w3.org/2000/svg" style="height: 20px; width: 20px;">
-	        <circle cx="10" cy="10" r="10" fill="green" />
-	      </svg>
-	    </h3>
-	  </div>
-	  <!--<div class="hidden-xs col-sm-3" style=""></div> -->
+            <div class="col-xs-12">
+                <object class="img img-responsive" type="image/png"
+                        data="static/img/def-avatars/user (<?php echo ($userTemplate->id % 15) + 1; ?>).png">
 
+                    <img src="<?php echo $AVATAR_FOLDER . "/" . $userTemplate->avatar; ?>"
+                        alt="Image de profil de l'ami">
+
+                </object>
+            </div>
+
+            <div class="col-xs-12 text-center">
+                <?php echo $userTemplate->identifiant; ?>
+            </div>
+        </div>
+    </a>
 </div>
 
 

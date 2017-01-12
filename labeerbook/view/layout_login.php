@@ -19,13 +19,14 @@
     <!-- -------------------------------------------------------------------- -->
     <!--                 HEADER                                               -->
     <!-- -------------------------------------------------------------------- -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav id="navbar-titre" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">LaBeerBook</a>
+                <a class="navbar-brand" href="?action=showProfile">labeerbook</a>
             </div>
             <div id="signature" class="navbar-collapse collapse text-right">
-                @Copyleft q.castillo r.rodriguez
+                <a href="https://fr.wikipedia.org/wiki/Copyleft">@Copyleft</a>
+                q.castillo r.rodriguez
             </div>
         </div>
     </nav>

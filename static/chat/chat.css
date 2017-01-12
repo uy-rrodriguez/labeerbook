@@ -165,7 +165,7 @@
     left: 0px;
 }
 
-.chat-photo > img {
+.chat-photo > .img {
     width: 50px;
 }
 

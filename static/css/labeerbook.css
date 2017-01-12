@@ -13,8 +13,12 @@ body {
   padding-bottom: 30px;
 }
 
-#signature {
-  color: white;
+#navbar-titre .navbar-header {
+}
+
+#navbar-titre #signature {
+    color: white;
+    font-style: italic;
 }
 
 #contenu {
@@ -151,11 +155,35 @@ body {
 }
 
 
-/* **********************  USER  *************************************** */
-/* Auteur : Q.CASTILLO
+/* **********************  LISTE D'AMIS  ******************************* */
+/* Auteur : Q.CASTILLO                                                   */
+/* Modifications finales : R.RODRIGUEZ                                   */
 /* ********************************************************************* */
-#userList{
+#liste-users {
+    padding: 0px;
+}
+
+#liste-users .item-liste-users {
+    padding: 5px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+#liste-users .item-liste-users .row {
+    padding: 5px;
+    margin: 2px;
+    border: 1px solid black;
+}
+
+#liste-users .item-liste-users .row:hover {
+    cursor: pointer;
     box-shadow: 5px 5px 2px #888888;
+}
+
+#liste-users .item-liste-users .img {
+    margin: 0 auto;
+    /*width: 100%;
+    height: auto;*/
 }
 
 

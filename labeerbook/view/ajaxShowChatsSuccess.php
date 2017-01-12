@@ -4,24 +4,15 @@
 	/*//*//*/
 
     $chats = $context->getSessionAttribute("chats");
+
+    foreach ($chats as $c) {
+        $context->setSessionAttribute("chatMessage", $c);
 ?>
-<?php foreach ($chats as $c) : ?>
-    <div class="chat-message">
-        <div class="chat-photo">
-            <img class="img" src="static/img/user-1.png">
+
+        <div class="chat-message">
+            <?php include("templates/chatMessage.php"); ?>
         </div>
-        <div class="chat-message-contenu">
-            <div class="chat-entete">
-                <span class="chat-nom">
-                    <?php echo strip_tags($c->emetteur->identifiant, FILTER_SANITIZE_STRING); ?>
-                </span>
-                <span class="chat-date">
-                    <?php echo $c->post->date->format('d/m/Y H:i'); ?>
-                </span>
-            </div>
-            <div class="chat-texte">
-                <pre><?php echo strip_tags($c->post->texte, FILTER_SANITIZE_STRING); ?></pre>
-            </div>
-        </div>
-    </div>
-<?php endforeach; ?>
+
+<?php
+    }
+?>

@@ -8,7 +8,6 @@
 // Initialisation du chat après le chargement de la page
 $(function() {
     leChat = Chat();
-    leChat.maximize();
 });
 
 
@@ -346,6 +345,9 @@ var Chat = function () {
         // On envoi le message, s'il n'est pas vide
         var texte = $('#chat-form textarea').val();
 
+        // On desactive la mise à jour automatique des messages
+        $this.deactivate_update();
+
         if (texte.trim() != "") {
             sendRequest(
                 "ajaxSendChatMessage",
@@ -361,6 +363,9 @@ var Chat = function () {
                         if (response) {
                             $this.add_new_messages(response);
                         }
+
+                        // On active la mise à jour automatique des messages
+                        $this.activate_update();
                     });
                 },
                 {"texte" : texte}

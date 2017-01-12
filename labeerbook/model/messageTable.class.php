@@ -8,10 +8,10 @@ class messageTable {
 
     /*//*//*/
 	    Auteur : Q.CASTILLO
-	    Description : 
+	    Description :
 	    	La méthode a pour but de récupérer les messages publiés
 	    	sur notre mur
-	    
+
 	/*//*//*/
 	public static function getMessages($context){
         $em = dbconnection::getInstance()->getEntityManager();
@@ -25,7 +25,7 @@ class messageTable {
         $messages = $query->getResult();
 
 
-        
+
 
         return $messages;
 	}
@@ -35,8 +35,8 @@ class messageTable {
 
     /*//*//*/
 	    Auteur : Q.CASTILLO
-	    Description : 
-	    	La méthode a pour but de poster un message	    
+	    Description :
+	    	La méthode a pour but de poster un message
 	/*//*//*/
 	public static function createMessage($message,$id){
 
@@ -52,6 +52,19 @@ class messageTable {
 		$em->flush();
 	}
 
+
+    /*//*//*/
+	    Auteur : R.RODRIGUEZ
+	    Description :
+	    	La méthode a pour but de récupérer les messages publiés
+	    	sur le mur d'un utilisateur quelconque.
+	/*//*//*/
+	public static function getMessagesByDestinataire($user){
+        $em = dbconnection::getInstance()->getEntityManager();
+        $messagesRepository = $em->getRepository('message');
+		$messages = $messagesRepository->findByDestinataire($user->id);
+        return $messages;
+	}
 }
 
 

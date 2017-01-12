@@ -1,14 +1,20 @@
 <?php
 	/*//*//*/
-		Auteur : Q.CASTILLO
+		Auteur : Q.CASTILLO (TP 3)
+        Modifications finales : R.RODRIGUEZ (TP 4)
 	/*//*//*/
-   $friends = $context->getSessionAttribute("friends");
-    
-    echo "<h3><u>Liste des amis : </u></h3><br/>";
-    foreach ($friends as $user) {
-        
-        $context->setSessionAttribute("userTemplate", $user);
+
+    $friends = $context->getSessionAttribute("friends");
+?>
+
+<h3>Les amis</h3>
+<div id="liste-users" class="container-fluid">
+
+<?php
+    foreach ($friends as $f) {
+        $context->setSessionAttribute("userTemplate", $f);
         include("$nameApp/view/templates/user.php");
-        
     }
 ?>
+
+</div>

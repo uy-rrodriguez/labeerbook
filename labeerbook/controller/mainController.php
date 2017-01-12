@@ -33,7 +33,7 @@ class mainController{
                     $context->setSessionAttribute("user", $user);
                     $context->setSessionAttribute("userProfile", $user);
                     $context->setSessionAttribute("msgInfo", "Bonjour " . $user->identifiant);
-                    
+
                     // on fait appel à la méthode récupérant les messages
                      mainController::ajaxGetMessages($request, $context);
 
@@ -111,14 +111,28 @@ class mainController{
     /*//*//*/
         Auteur : R.RODRIGUEZ
     /*//*//*/
-	public static function editProfile($request,$context) {
-		return context::SUCCESS;
-	}
+	public static function showProfile($request, $context) {
+        // Recherche de l'utilisateur
+        $userProfile = null;
+        if (key_exists("idProfile", $request)) {
+            $userID = $request["idProfile"];
+            $userProfile = utilisateurTable::getUserById($userID);
+        }
+        else {
+            $userProfile = $context->getSessionAttribute("user");
+        }
 
-	public static function showProfile($request,$context) {
-        //$id = $request["idProfile"];
-        //$user = userData->get($id);
-		//$context->setSessionAttribute("userProfile", $user);
+        // Controle du resultat
+        if ($userProfile != null) {
+            $messagesProfile = messageTable::getMessagesByDestinataire($userProfile);
+
+            $context->setSessionAttribute("messagesProfile", $messagesProfile);
+            $context->setSessionAttribute("userProfile", $userProfile);
+        }
+        else {
+            return context::ERROR;
+        }
+
         return context::SUCCESS;
 	}
 
@@ -188,7 +202,7 @@ class mainController{
 
             $context->setSessionAttribute("messages", $messages);
             return context::SUCCESS;
-            
+
         } catch( Exception $e){
             $context->setSessionAttribute("msgErreur", $e->getMessage());
             return context::ERROR;
@@ -198,7 +212,7 @@ class mainController{
     /*//*//*/
         Auteur : Q.CASTILLO
         Description:
-            Récupère l'id de la personne sur qui on a cliqué et nous envoie 
+            Récupère l'id de la personne sur qui on a cliqué et nous envoie
             sur son profil.
     /*//*//*/
     public static function ajaxShowProfile($request, $context) {
