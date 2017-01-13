@@ -161,15 +161,11 @@ class mainController{
 	public static function ajaxEditProfile($request, $context) {
 		$user = $context->getSessionAttribute("user");
 
-		$user->nom = $request['nom'];
-		$user->prenom = $request['prenom'];
-		$user->statut = $request['status'];
-		$user->pass = $request['password'];
+		$statut = $request["statut"];
 
 
-		utilisateurTable::modifUser($user);
-
-        return context::SUCCESS;
+		utilisateurTable::modifUser($user,$statut);
+        return "message edité !";
     }
 
 

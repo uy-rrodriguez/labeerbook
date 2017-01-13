@@ -33,11 +33,10 @@ function logout() {
     On récupère les infos à éditer
 /*//*//*/
 function editProfile() {
-	alert("debut tests");
-	var arrayEdit = [$('#NameEdit').val(),$('#FirstnameEdit').val(),$('#StatusEdit').val(),$('#PasswordEdit').val()];
+	var arrayEdit = {"statut" : $('#StatusEdit').val()};
 
 	sendRequest("ajaxEditProfile", function(response, status, ajaxObj) {
-		$('#profil').html(response);
+		alert(response);
 	}, arrayEdit);
 }
 

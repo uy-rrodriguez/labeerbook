@@ -42,11 +42,15 @@ class utilisateurTable {
 	    Entrée :
 			$id   => Entier 
 	/*//*//*/	
-	public static function modifUser($user) {
+	public static function modifUser($user,$statut) {
 		$em = dbconnection::getInstance()->getEntityManager() ;
 		
-		alert("modifUser");
-		$em->merge($user);
+		$userRepository = $em->getRepository('utilisateur');
+		$userToModif = $userRepository->findOneBy(array("id" => $user->id));
+
+		$userToModif->statut = $statut;
+
+		$em->persist($userToModif);
 		$em->flush();
 	}
 
