@@ -35,12 +35,12 @@
             </div>
 
             <div class="msg-share-like">
-                <div class="btn btn-default msg-btn msg-share">
-                    Partager <img href="" src="static/img/share.png">
+                <div  class="btn btn-default msg-btn msg-share">
+                    Partager <img href="" src="static/img/share.png" onclick="share(<?php echo $m->id ?>)">
                 </div>
                 <div class="btn btn-default msg-btn msg-like">
                     <?php echo ($m->aime != "" ? $m->aime : 0); ?>
-                    <img href="" src="static/img/like.png">
+                    <img href="" src="static/img/like.png" onclick="addLike(<?php echo $m->id ?>)">
                 </div>
             </div>
         </div>

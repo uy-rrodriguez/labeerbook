@@ -180,10 +180,10 @@ class mainController{
             sur lequel on se trouve
     /*//*//*/
     public static function ajaxAddMessage($request, $context) {
-            $userActuel = $context->getSessionAttribute("user");
-            $userActuel2 = utilisateurTable::getUserById($userActuel->id); 
-
-            $newMessage = MessageTable::createMessage("test",$userActuel2);
+            $userActuel = $context->getSessionAttribute("user"); 
+            $userProfile = $context->getSessionAttribute("userProfile");
+            // 4 parametres : le message, l'emetteur, le destinataire, le parent
+            $newMessage = messageTable::createMessage($request["message"],$userActuel,$userProfile,$userActuel);
 
 
             return "message créé OK";
@@ -212,12 +212,30 @@ class mainController{
     /*//*//*/
         Auteur : Q.CASTILLO
         Description:
-            Récupère l'id de la personne sur qui on a cliqué et nous envoie
-            sur son profil.
+            Incremente le like
     /*//*//*/
-    public static function ajaxShowProfile($request, $context) {
+    public static function ajaxAddLike($request, $context) {
+        messageTable::addLike($request["message"]);
 
+        return "like ajouté";
     }
+
+
+    /*//*//*/
+        Auteur : Q.CASTILLO
+        Description:
+            Partage un message
+    /*//*//*/
+    public static function ajaxShareMessage($request, $context) {
+
+        $user = $context->getSessionAttribute("user");
+        $userProfile = $context->getSessionAttribute("userProfile");
+        
+        messageTable::shareMessage($request["messageID"],$user,$userProfile);
+
+        return "message bien partagé";
+    }
+
 
     /*//*//*/
     	Auteur : R.RODRIGUEZ

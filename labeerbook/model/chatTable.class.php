@@ -62,6 +62,7 @@ class chatTable {
         $post->texte = $texte;
         $post->date = new DateTime(date("Y-m-d H:i:s"));
         $post->image = "";
+        
         $em->persist($post);
         $em->flush();
 

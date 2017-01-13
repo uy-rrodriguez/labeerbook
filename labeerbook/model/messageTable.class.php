@@ -59,28 +59,68 @@ class messageTable {
 	    Description : 
 	    	La méthode a pour but de poster un message	    
 	/*//*//*/
-	public static function createMessage($message,$user){
+	public static function createMessage($message,$user,$destinataire,$parent){
 
 		$em =dbconnection::getInstance()->getEntityManager();
 
 		$post = new post();
 		$post->texte = $message;
-		$post->date = new DateTime(date("Y-m-d H:i:s"));
+		$post->date = new DateTime();
 		$post->image ="";
 
+		$em->persist($post);
+        $em->flush();
 
+        $userRepository = $em->getRepository("utilisateur");
+        $user = $userRepository->findOneBy(array('id' => $user->id));
+        $destinataire = $userRepository->findOneBy(array('id' => $destinataire->id));
+        $parent = $userRepository->findOneBy(array('id' => $parent->id));
 
 		$newMessage = new message();
 		$newMessage->emetteur = $user;
-		$newmessage->destinataire = $user;
-		$newMessage->parent = $user;
+		$newMessage->destinataire = $destinataire;
+		$newMessage->parent = $parent;
 		$newMessage->post = $post;
-		$newMessage->aimer = 0;
+		$newMessage->aime = 0;
 		
 
 		$em->persist($newMessage);
 		$em->flush();
 
+	}
+
+	/*//*//*/
+	    Auteur : Q.CASTILLO
+	    Description : 
+	    	La méthode a pour but de liker le message
+	/*//*//*/
+	public static function addLike($idMessage){
+
+		$em =dbconnection::getInstance()->getEntityManager();
+
+		$messageRepository = $em->getRepository("message");
+		$message = $messageRepository->findOneBy(array('id'=> $idMessage));
+
+		$message->aime++;
+
+		$em->persist($message);
+		$em->flush();
+
+	}
+
+		/*//*//*/
+	    Auteur : Q.CASTILLO
+	    Description : 
+	    	La méthode a pour but partager un message sur notre mur  
+	/*//*//*/
+	public static function shareMessage($idMessage,$user,$userProfile){
+		$em =dbconnection::getInstance()->getEntityManager();
+
+		$messageRepository = $em->getRepository("message");
+		$message = $messageRepository->findOneBy(array('id'=> $idMessage));
+		$texte = $message->post->texte;
+
+		messageTable::createMessage($texte,$user,$user,$userProfile);
 	}
 
 }
