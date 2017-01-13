@@ -1,14 +1,17 @@
 <?php
     $c = $context->getSessionAttribute("chatMessage");
-    $AVATAR_FOLDER = "upload/avatar";
+
+    // Le dossier avec les uploads se trouve dans une classe de configuration
+    $AVATAR_FOLDER = config::AVATAR_FOLDER;
+
+    // Image à utiliser si la photo n'est pas trouvé. On récupère une photo aléatoire
+    $imgOnError = "static/img/def-avatars/user (" . ($c->emetteur->id % 15) . ").png";
 ?>
 
 <div class="chat-photo">
-    <object class="img" type="image/png"
-            data="static/img/def-avatars/user (<?php echo ($c->emetteur->id % 15) + 1; ?>).png">
-        <img src="<?php echo $AVATAR_FOLDER . "/" . $c->emetteur->avatar; ?>"
-            alt="Image de profil de l'ami">
-    </object>
+    <img class="img" src="<?php echo $AVATAR_FOLDER . "/" . $c->emetteur->avatar; ?>"
+        alt="Image de profil de l'ami"
+        onerror="this.onerror=null; this.src='<?php echo $imgOnError; ?>';">
 </div>
 
 <div class="chat-message-contenu">

@@ -136,6 +136,10 @@ class mainController{
         return context::SUCCESS;
 	}
 
+	public static function editProfile($request, $context) {
+		return context::SUCCESS;
+    }
+
 
 	/* ************************************************************************** *
      * 								ACTIONS AJAX

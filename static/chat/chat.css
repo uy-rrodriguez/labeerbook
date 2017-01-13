@@ -63,10 +63,10 @@
     left: auto;
     top: auto;
 
-    border: 2px solid #BEBEBE;
-    border-radius: 10px;
-    background-color: #DEDEDE;
-    box-shadow: 2px 2px 2px #CDCDCD;
+    border: 1px solid var(--orange-obscur);
+    /*border-radius: 10px;*/
+    background-color: white;
+    box-shadow: 3px 3px var(--orange-obscur);
 }
 
 #chat-container {
@@ -83,11 +83,19 @@
     height: 40px;
     padding: 8px 20px;
     text-align: center;
+
+    color: white;
+    background-color: var(--gris-obscur);
+    /*border: 1px solid var(--orange-obscur);
+    border-radius: 9px;*/
 }
 
 #chat-bulle:hover {
     cursor: pointer;
+    color: var(--gris-obscur);
+    background-color: var(--orange);
 }
+
 
 
 /* ******************* Style chat minimized ***************************** */
@@ -96,10 +104,6 @@
     height: 40px;
     max-width: 100px;
     max-height: 40px;
-}
-
-#chat.minimized:hover {
-    background-color: #EFEFEF;
 }
 
 #chat.minimized #chat-contenu,
@@ -117,7 +121,7 @@
 }
 
 #chat.maximized #chat-bulle {
-  border-bottom: 1px solid #CECECE;
+  border-bottom: 1px solid var(--orange-obscur);
 }
 
 #chat.maximized #chat-contenu {
@@ -128,7 +132,12 @@
     bottom: 122px;
 
     overflow-y: auto;
-    background-color: #FEFEFE;
+    background-color: white;
+}
+
+#chat .label-info {
+    color: var(--gris-obscur);
+    background-color: white;
 }
 
 #chat-contenu #img-loading {
@@ -141,11 +150,15 @@
     position: relative;
     margin: 2px;
     padding-right: 2px;
-    border: 1px solid #CECECE;
+    /*border-top: 1px solid var(--gris);*/
     /*min-height: 50px;*/
 }
 
 /* Style pour les nouveaux messages */
+.chat-message.chat-nouveau {
+    border: 1px solid var(--orange);
+}
+/*
 .chat-message.chat-nouveau:before {
     content: " ";
     display: block;
@@ -159,6 +172,7 @@
     border-right-color: transparent;
     padding: 0;
 }
+*/
 
 .chat-photo {
     position: absolute;
@@ -182,7 +196,7 @@
     top: 2px;
     right: 5px;
     font-size: 10px;
-    color: #BEBEBE;
+    color: var(--gris);
 }
 
 .chat-texte {
@@ -203,7 +217,7 @@
     left: 0px;
     right: 0px;
     padding: 5px;
-    border-top: 1px solid #CECECE;
+    border-top: 1px solid var(--gris);
 }
 
 #chat-form .form-group {
@@ -248,14 +262,13 @@
 #chat.maximized .ui-resizable-handle {
     width: 0px;
     height: 0px;
-    /*background-color: #BEBEBE;*/
-    border: 10px solid #BEBEBE;
+    border: 10px solid var(--orange-obscur);
 }
 
 #chat.maximized .ui-resizable-se {
     border-top-color : transparent;
     border-left-color: transparent;
-    border-bottom-right-radius: 8px;
+    /*border-bottom-right-radius: 8px;*/
 }
 
 #chat.maximized .ui-resizable-nw {
@@ -263,7 +276,7 @@
     top: 1px;
     border-bottom-color : transparent;
     border-right-color: transparent;
-    border-top-left-radius: 8px;
+    /*border-top-left-radius: 8px;*/
 }
 
 #chat.minimized .ui-resizable-handle {

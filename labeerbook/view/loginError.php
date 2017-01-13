@@ -7,7 +7,7 @@
             <label for="password">Password :</label>
             <input type="password" class="form-control" name="password" /><br>
 
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-default btn-lg">Se connecter</button>
         </div>
     </form>
 </div>

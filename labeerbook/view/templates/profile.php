@@ -7,36 +7,44 @@
 
     $userProfile = $context->getSessionAttribute("userProfile");
 
-    //$loggedUser = $context->getSessionAttribute("user");
+
+    // Le dossier avec les uploads se trouve dans une classe de configuration
+    $AVATAR_FOLDER = config::AVATAR_FOLDER;
+
+    // Image à utiliser si la photo n'est pas trouvé. On récupère une photo aléatoire
+    $imgOnError = "static/img/def-avatars/user (" . ($userProfile->id % 15) . ").png";
 ?>
 
 
   <div class="col-xs-12 col-sm-4 col-md-3">
     <div id="img-profil-container">
-        <img id="img-profil" class="img img-responsive" src="static/img/user-1.png">
-        <img id="img-profil-biere" class="img img-responsive" src="static/img/beer-1.png">
+        <img id="img-profil" class="img" alt="Image de profil de l'utilisateur"
+            src="<?php echo $AVATAR_FOLDER . "/" . $c->emetteur->avatar; ?>"
+            onerror="this.onerror=null; this.src='<?php echo $imgOnError; ?>';">
+
+        <img id="img-profil-biere" class="img" src="static/img/beer-1.png">
     </div>
   </div>
 
   <div class="col-xs-12 col-sm-5 col-md-6">
     <h2><?php echo $userProfile->identifiant; ?></h2>
     <h3><?php echo $userProfile->prenom . " " . $userProfile->nom; ?></h3>
-    <h3>
-      Statut : <?php echo $userProfile->statut; ?>
-    </h3>
+
+    <blockquote>
+        <p><?php echo ($userProfile->statut != "" ? $userProfile->statut : "sans status"); ?></p>
+    </blockquote>
 
     <!-- Formulaire envoie de message a ce profil -->
-    <div>
-        <h3>Post</h3>
+    <div class="form-wrapper">
+        <div class="form-titre"></div>
         <form method="post" id="formProfile" action="#">
             <div class="form-group container-fluid">
                 <div class="row">
                     <div class="col-xs-12 col-sm-8">
-                        <!--<label for="message">Message à ce profil :</label>-->
-                        <textarea class="form-control"  name="message" placeholder="Message à ce profil"></textarea><br>
+                        <textarea class="form-control" name="message" placeholder="Écrire un message dans ce mur"></textarea>
                     </div>
                     <div class="col-xs-12 col-sm-4">
-                        <button type="button" class="btn btn-default" >Poster</button>
+                        <button type="button" class="btn btn-default btn-lg" >Poster</button>
                     </div>
                 </div>
             </div>

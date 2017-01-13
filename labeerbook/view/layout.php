@@ -22,13 +22,15 @@
     <!-- -------------------------------------------------------------------- -->
     <nav id="navbar-titre" class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-header text-right">
                 <a class="navbar-brand" href="?action=showProfile">labeerbook</a>
             </div>
+            <!--
             <div id="signature" class="navbar-collapse collapse text-right">
                 <a href="https://fr.wikipedia.org/wiki/Copyleft">@Copyleft</a>
                 q.castillo r.rodriguez
             </div>
+            -->
         </div>
     </nav>
 
@@ -36,7 +38,7 @@
     <!-- -------------------------------------------------------------------- -->
     <!--                 GRAND CONTENEUR                                      -->
     <!-- -------------------------------------------------------------------- -->
-    <div class="container" role="main">
+    <div id="tout" class="container" role="main">
 
 
         <!-- -------------------------------------------------------------------- -->

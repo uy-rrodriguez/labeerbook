@@ -24,10 +24,12 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="?action=showProfile">labeerbook</a>
             </div>
+            <!--
             <div id="signature" class="navbar-collapse collapse text-right">
                 <a href="https://fr.wikipedia.org/wiki/Copyleft">@Copyleft</a>
                 q.castillo r.rodriguez
             </div>
+            -->
         </div>
     </nav>
 

@@ -2,33 +2,56 @@
 	$userProfile = $context->getSessionAttribute("userProfile");
     $messagesProfile = $context->getSessionAttribute("messagesProfile");
 
-	foreach ($messagesProfile as $m) {
+    // Le dossier avec les uploads se trouve dans une classe de configuration
+    $AVATAR_FOLDER = config::AVATAR_FOLDER;
+
 ?>
-        <div id="message">
 
-            <div id="messAccueil" class="row">
-                <div class = "col-xs-3">
-                    <div id="img-profil-container">
-                    <img id="img-profil" class="img img-responsive" src="static/img/user-1.png">
-                    <img id="img-profil-biere" class="img img-responsive" src="static/img/beer-1.png">
-                </div>
-                </div>
+    <div class="row titre-contenu">Messages reçus</div>
+    <!--<div class="row"><h2>Messages reçus</h2></div>-->
 
-                <div class = "col-xs-9" >
-                    <b><?php echo $m->emetteur->identifiant; ?> : </b><br>
-                    <?php echo $m->post->texte; ?>
+
+<?php
+	foreach ($messagesProfile as $m) {
+        // Hack pour les messages qui n'ont pas assigné un émetteur
+        $emetteur = $m->emetteur;
+        if (! $emetteur) {
+            $emetteur = new utilisateur();
+            $emetteur->id = 0;
+            $emetteur->identifiant = "sans identifiant";
+            $emetteur->avatar = "";
+        }
+
+
+        $avatar = $AVATAR_FOLDER . "/" . $emetteur->avatar;
+
+        // Image à utiliser si la photo n'est pas trouvé. On récupère une photo aléatoire
+        $imgOnError = "static/img/def-avatars/user (" . ($emetteur->id % 15) . ").png";
+
+?>
+        <div class="row message">
+            <div class="col-xs-3 msg-photo">
+                <img class="img" src="<?php echo $avatar; ?>"
+                    alt="Image de profil de l'émetteur"
+                    onerror="this.onerror=null; this.src='<?php echo $imgOnError; ?>';">
+            </div>
+
+            <div class="col-xs-9 msg-contenu">
+                <div class="msg-emetteur"><?php echo $emetteur->identifiant; ?></div>
+                <div class="msg-texte">
+                    <pre><?php echo strip_tags($m->post->texte, FILTER_SANITIZE_STRING); ?></pre>
                 </div>
             </div>
 
-
-            <div id="shareLike" class ="row">
-                <div class="col-xs-12">
-                    Partager
-                    <img href="" src="static/img/share.png">
+            <div class="msg-share-like">
+                <div class="btn btn-default msg-btn msg-share">
+                    Partager <img href="" src="static/img/share.png">
+                </div>
+                <div class="btn btn-default msg-btn msg-like">
+                    <?php echo ($m->aime != "" ? $m->aime : 0); ?>
                     <img href="" src="static/img/like.png">
                 </div>
             </div>
-
         </div>
 
 <?php

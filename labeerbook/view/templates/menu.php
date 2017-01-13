@@ -17,7 +17,7 @@
         <ul class="nav navbar-nav">
           <li><a href="?action=showProfile">Accueil</a></li>
           <li><a href="?action=showFriends">Les amis</a></li>
-          <li><a href="?action=showProfile">Mon profil</a></li>
+          <li><a href="?action=editProfile">Mon profil</a></li>
           <li><a href="#" onclick="logout()">Se déconnecter</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->

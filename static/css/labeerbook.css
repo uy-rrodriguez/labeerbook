@@ -1,5 +1,76 @@
 @CHARSET "UTF-8";
 
+/* **********************  VARIABLES  ********************************** */
+/*
+    Variables CSS pour simplifier le design. Pour le rendu final nous
+    avons remplacé toutes les variables pour leur valeurs finales afin
+    que le code soit compatible avec plus de navigateurs.
+*/
+/* *** Couleurs *** */
+:root {
+    /* Base */
+    --base: #D0B783/*`*/; /* Marron */
+    --base-obscur: #AC542C;
+    --clair: #CEC4A1; /* Vanille fonce */
+    --tres-clair: #F4EFDC; /* Vanille */
+
+    /* Alternatif */
+    --alt-clair: #F96161; /* Rose */
+
+
+    --gris: #DEDEDE;
+    --gris-obscur: #959595;
+    --gris-clair: #F9F9F9;
+
+
+    --orange-obscur: #E35839;
+    --orange: #F39C12;
+    --orange-clair: #F1C40F;
+    --marron: #D28D4F;
+
+    /* Background */
+    --bleu-clair: #9EC0AF; /* Bleu ciel */
+    --bleu-obscur: #BCD2D0; /* Bleu fonce */
+
+    --back-page: var(--gris-clair);
+    --back-profil: var(--bleu-clair);
+    --back-login: var(--bleu-clair);
+    --fore-login: white;
+    --back-topbar: white;
+
+    --back-form: var(--bleu-obscur);
+    --back-btn: var(--bleu-obscur);
+
+    --back-menu: var(--bleu-obscur);
+}
+
+:root {
+    --gris: #A0A0A0;
+    --gris-clair: #DEDEDE;
+    --gris-obscur: #323232;
+    --alt-clair: var(--gris);
+
+    --back-page: var(--gris-obscur);
+
+    --back-topbar: var(--gris-obscur);
+    --fore-topbar: var(--orange);
+
+    --back-login: var(--orange-obscur);
+    --fore-login: white;
+
+    --back-profil: var(--orange-obscur);
+    --back-form: var(--gris-clair);
+    --back-btn: var(--orange-obscur);
+
+    --back-menu: var(--gris);
+    --fore-menu: var(--back-page);
+
+    --back-menu-hover: var(--orange-obscur);
+    --fore-menu-hover: white;
+}
+
+
+
 /*
  * Images :
  *     https://www.iconfinder.com/iconsets/user-avatars-1
@@ -7,51 +78,179 @@
  */
 
 /* **********************  TEMPLATE  *********************************** */
+/* Auteur : R.RODRIGUEZ                                                  */
+/* ********************************************************************* */
 
 body {
-  padding-top: 70px;
-  padding-bottom: 30px;
+    padding-top: 80px;
+    padding-bottom: 30px;
+    color: var(--back-page);
+    background-color: var(--back-page);
 }
 
-#navbar-titre .navbar-header {
+#tout > .row {
+    padding: 10px;
+    background-color: white;
+    /*border: 5px solid var(--alt-clair);*/
+}
+
+#navbar-titre {
+    background-color: var(--back-topbar);
+    border-bottom: 5px solid var(--fore-topbar);
+}
+
+#navbar-titre .navbar-brand {
+    float: right;
+    color: var(--fore-topbar);
 }
 
 #navbar-titre #signature {
-    color: white;
+    color: var(--back);
     font-style: italic;
+}
+
+#navbar-titre #signature a {
+    color: var(--back-obscur);
 }
 
 #contenu {
     min-height: 200px;
-    background-color: #ECECEC;
 }
 
 
 /* Bootstrap taille > xs */
 @media (min-width: 768px) {
     #navbar-titre .navbar-brand {
-        font-size: 40px;
+        margin: 5px auto;
+        font-size: 2.8em;
         font-weight: bold;
+        letter-spacing: 0.1em;
     }
 }
+
+/* Bootstrap taille <= xs */
+@media (max-width: 768px) {
+    #navbar-titre .navbar-brand {
+        font-size: 2em;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+    }
+}
+
+
+/* Modifications des boutons Bootstrap */
+.btn-default {
+    /*color: var(--back);*/
+}
+.btn-default:hover {
+    color: white;
+    background-color: var(--back-btn);
+}
+
+
+/* **********************  INTITULES  ********************************** */
+/* Auteur : R.RODRIGUEZ                                                  */
+/* ********************************************************************* */
+
+.titre-contenu {
+    margin-bottom: 40px;
+    padding: 10px 0px 5px 10px;
+    font-size: 1.8em;
+    color: var(--gris-obscur);
+    border-bottom: 6px solid var(--gris-clair);
+}
+
 
 
 /* **********************  PROFIL  ************************************* */
 /* Auteur : R.RODRIGUEZ                                                  */
 /* ********************************************************************* */
 #profil {
-  margin-bottom: 10px;
+    margin-bottom: 50px;
+    border: 1px solid var(--gris-clair);
+    border-right: none;
+    border-bottom: none;
+    box-shadow: 3px 3px var(--gris-clair);
+    /*border-bottom: 20px solid var(--back);*/
 }
 
-/* Bootstrap taille > xs */
-@media(min-width:768px) {
-  #profil {
-    margin-bottom: 25px;
-  }
+#profil h2 {
+    padding: 10px 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 36px;
+    color: white;
+    background-color: var(--back-profil);
+    box-shadow: 3px 3px var(--gris-clair);
 }
+
+#profil h3 {
+    margin: 20px 30px 40px 30px;
+    font-size: 26px;
+}
+
+#profil blockquote {
+    position: relative;
+    padding: 0px;
+    margin: 0px 30px;
+    font-size: 20px;
+    text-style: italic;
+    color: var(--alt-clair);
+    border: none;
+
+    quotes: "\201C""\201D""\2018""\2019";
+}
+#profil blockquote p {
+    text-align: center;
+    display: inline;
+}
+#profil blockquote:before, #profil blockquote:after {
+    font-size: 2.6em;
+    font-weight: bold;
+    color: var(--alt-clair);
+    line-height: 0.1em;
+}
+#profil blockquote:before {
+    content: open-quote;
+    margin-right: 0.25em;
+    vertical-align: -0.1em;
+}
+/*
+#profil blockquote:after {
+    content: close-quote;
+}
+*/
+
+#profil .form-wrapper {
+    margin-top: 50px;
+    border: 1px solid var(--back-form);
+}
+
+#profil .form-wrapper .form-titre {
+    padding: 3px 5px;
+    font-size: 1.2em;
+    /*font-weight: bold;*/
+    text-align: center;
+    color: white;
+    border-bottom: 1px solid white;
+    background-color: var(--back-form);
+}
+
+#profil .form-wrapper .form-group {
+    margin: 0px;
+    padding: 15px;
+}
+
+#profil .form-wrapper .form-group .btn {
+    width: 100%;
+}
+
 
 #img-profil-container {
     position: relative;
+    margin: 0 auto;
+    max-width: 300px;
+    /*border: 1px solid var(--back);*/
 }
 
 #img-profil {
@@ -87,20 +286,54 @@ body {
  *     http://www.bootply.com/idWWJSmrKD
  */
 
+#nav-menu {
+    background-color: var(--back-menu);
+}
+
+#nav-menu a {
+    color: var(--fore-menu);
+}
+
 #nav-menu .navbar-header:hover {
     cursor: pointer;
 }
 
 #nav-menu .navbar-nav li a:hover,
 #nav-menu .navbar-nav li a:focus {
-    background-color: #CECECE;
-    color: #000000;
+    background-color: var(--back-menu-hover);
+    color: var(--fore-menu-hover);
+    transition: 0.3s;
 }
 
 #nav-menu .navbar-nav li a.disabled {
-    background-color: #FDFDFD;
-    color: #DEDEDE;
+    background-color: var(--gris-clair);
+    color: var(--gris);
     cursor: not-allowed;
+}
+
+/* Bootstrap taille < xs */
+@media (max-width: 768px) {
+    /* Le menu est affiche en haut si le dispositif est petit */
+    #nav-menu {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 1000000;
+
+        border: none;
+    }
+
+    #nav-menu .navbar-header {
+        background-color: var(--fore-topbar);
+    }
+
+    #nav-menu .navbar-header span {
+        color: var(--back-topbar);
+    }
+
+    #nav-menu .navbar-collapse {
+        border: none;
+    }
 }
 
 /* Bootstrap taille > xs */
@@ -159,8 +392,13 @@ body {
 /* Auteur : Q.CASTILLO                                                   */
 /* Modifications finales : R.RODRIGUEZ                                   */
 /* ********************************************************************* */
+
 #liste-users {
     padding: 0px;
+}
+
+#liste-users a {
+    color: var(--orange-obscur);
 }
 
 #liste-users .item-liste-users {
@@ -177,7 +415,9 @@ body {
 
 #liste-users .item-liste-users .row:hover {
     cursor: pointer;
-    box-shadow: 5px 5px 2px #888888;
+    box-shadow: 5px 5px 2px var(--gris-clair);
+    transform: scale(1.1);
+    transition: 0.2s;
 }
 
 #liste-users .item-liste-users .img {
@@ -190,11 +430,24 @@ body {
 /* **********************  LOGIN  ************************************** */
 /* Auteur : R.RODRIGUEZ                                                  */
 /* ********************************************************************* */
-#contenu-login {
-    margin-top: 30px;
-    padding: 30px;
-    background-color: #ECECEC;
-    box-shadow: 6px 6px 3px #CECECE;
+
+#login {
+    margin: 30px auto;
+    padding: 20px 40px;
+    max-width: 500px;
+    color: var(--fore-login);
+    background-color: var(--back-login);
+    border: 1px solid var(--gris-obscur);
+    box-shadow: 3px 3px var(--gris-clair);
+}
+
+#login .btn-default {
+    width: 100%;
+}
+
+#login .btn-default:hover {
+    color: var(--fore-login);
+    background-color: var(--gris-obscur);
 }
 
 
@@ -212,26 +465,66 @@ body {
 /* **********************  ACCUEIL ************************************* */
 /* Auteur : Q.CASTILLO                                                   */
 /* ********************************************************************* */
-#message{
-    margin : 15px 0px;
-    background-color: silver;
+
+.message {
+    position: relative;
+    margin-bottom: 15px;
+    padding: 0px;
+    padding-bottom: 10px;
+    border: 1px solid var(--gris);
+    box-shadow: 2px 2px var(--gris-clair);
 }
 
-#messAccueil{
+.message .msg-photo {
+    padding: 0px;
+}
+
+.message .msg-photo .img {
+    width: 100%;
+    max-width: 100px;
+}
+
+.message .msg-contenu {
+    padding-bottom: 40px;
+}
+
+.message .msg-emetteur {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.message .msg-share-like {
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+}
+
+.message .msg-btn {
+    float: right;
+    padding: 2px 6px;
+    font-size: 0.9em;
+    color: var(--gris-obscur);
+    /*border: 1px solid black;*/
+}
+.message .msg-btn:hover {
+    cursor: pointer;
+    color: white;
+    background-color: var(--orange);
+    transform: scale(1.05);
+}
+
+.message .msg-btn img {
+    width: 30px;
+    height: auto;
+}
+
+.message .msg-like {
+    margin-right: 5px;
+}
+
+
+.messAccueil {
     padding: 15px;
     font-style:italic;
 
-}
-
-#shareLike{
-    text-align: right;
-}
-
-#shareLike img{
-    width : 20px;
-    height : 20px;
-}
-
-#shareLike img:hover{
-    cursor: pointer;
 }

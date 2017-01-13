@@ -4,6 +4,10 @@ error_reporting(E_ALL);
 ini_set("display_errors", true);
 
 
+// Avant tout, on inclut la configuration de certaines constantes
+include_once("config.php");
+
+
 //nom de l'application
 $nameApp = "labeerbook";
 

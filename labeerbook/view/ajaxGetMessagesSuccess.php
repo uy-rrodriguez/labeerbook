@@ -1,8 +1,14 @@
-<?php 
+<?php
 	$allMessages = $context->getSessionAttribute("messages");
+
+    // Le dossier avec les uploads se trouve dans une classe de configuration
+    $AVATAR_FOLDER = config::AVATAR_FOLDER;
+
 
 	foreach ($allMessages as $message) {
 
+        // Image à utiliser si la photo n'est pas trouvé. On récupère une photo aléatoire
+        $imgOnError = "static/img/def-avatars/user (" . ($message->emetteur->id % 15) . ").png";
 ?>
 
 
@@ -10,10 +16,9 @@
 
 	<div id = "messAccueil" class = "row" >
 		<div class = "col-xs-3">
-			<div id="img-profil-container">
-	        <img id="img-profil" class="img img-responsive" src="static/img/user-1.png">
-	        <img id="img-profil-biere" class="img img-responsive" src="static/img/beer-1.png">
-	    </div>
+			<img class="img" src="<?php echo $AVATAR_FOLDER . "/" . $message->emetteur->avatar; ?>"
+                alt="Image de profil de l'émetteur"
+                onerror="this.onerror=null; this.src='<?php echo $imgOnError; ?>';">
 		</div>
 
 		<div class = "col-xs-9" >

@@ -5,7 +5,12 @@
 	/*//*//*/
 
 	$userTemplate = $context->getSessionAttribute("userTemplate");
-    $AVATAR_FOLDER = "upload/avatar";
+
+    // Le dossier avec les uploads se trouve dans une classe de configuration
+    $AVATAR_FOLDER = config::AVATAR_FOLDER;
+
+    // Image à utiliser si la photo n'est pas trouvé. On récupère une photo aléatoire
+    $imgOnError = "static/img/def-avatars/user (" . ($userTemplate->id % 15) . ").png";
 ?>
 
 <div class="item-liste-users col-xs-6 col-sm-4">
@@ -13,13 +18,10 @@
         <div class="row">
 
             <div class="col-xs-12">
-                <object class="img img-responsive" type="image/png"
-                        data="static/img/def-avatars/user (<?php echo ($userTemplate->id % 15) + 1; ?>).png">
-
-                    <img src="<?php echo $AVATAR_FOLDER . "/" . $userTemplate->avatar; ?>"
-                        alt="Image de profil de l'ami">
-
-                </object>
+                <img class="img img-responsive"
+                    src="<?php echo $AVATAR_FOLDER . "/" . $userTemplate->avatar; ?>"
+                    alt="Image de profil de l'utilisateur"
+                    onerror="this.onerror=null; this.src='<?php echo $imgOnError; ?>';">
             </div>
 
             <div class="col-xs-12 text-center">
