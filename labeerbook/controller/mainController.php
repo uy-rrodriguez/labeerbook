@@ -160,12 +160,15 @@ class mainController{
     /*//*//*/
 	public static function ajaxEditProfile($request, $context) {
 		$user = $context->getSessionAttribute("user");
-
 		$statut = $request["statut"];
-
+        $user->statut = $statut;
 
 		utilisateurTable::modifUser($user,$statut);
-        return "message edité !";
+
+        // Mise-à-jour de l'utilisateur dans la session
+        $context->setSessionAttribute("user", $user);
+
+        return $statut;
     }
 
 
@@ -176,7 +179,7 @@ class mainController{
             sur lequel on se trouve
     /*//*//*/
     public static function ajaxAddMessage($request, $context) {
-            $userActuel = $context->getSessionAttribute("user"); 
+            $userActuel = $context->getSessionAttribute("user");
             $userProfile = $context->getSessionAttribute("userProfile");
             // 4 parametres : le message, l'emetteur, le destinataire, le parent
             $newMessage = messageTable::createMessage($request["message"],$userActuel,$userProfile,$userActuel);
@@ -211,9 +214,9 @@ class mainController{
             Incremente le like
     /*//*//*/
     public static function ajaxAddLike($request, $context) {
-        messageTable::addLike($request["message"]);
+        $message = messageTable::addLike($request["message"]);
 
-        return "like ajouté";
+        return $message->aime;
     }
 
 
@@ -226,7 +229,7 @@ class mainController{
 
         $user = $context->getSessionAttribute("user");
         $userProfile = $context->getSessionAttribute("userProfile");
-        
+
         messageTable::shareMessage($request["messageID"],$user,$userProfile);
 
         return "message bien partagé";
@@ -290,15 +293,6 @@ class mainController{
 
         // Ajout du message
         chatTable::addChatMessage($user, $request['texte']);
-
-        /*
-        // Listing des derniers messages
-        $lastChats = chatTable::getLastChats($context->getSessionAttribute("lastChatID"));
-
-        // On stocke le dernier ID
-        if (count($lastChats) > 0)
-            $context->setSessionAttribute("lastChatID", $lastChats[count($lastChats)-1]->id);
-        */
 
         return "Chat crée OK";
     }

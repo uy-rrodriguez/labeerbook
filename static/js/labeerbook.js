@@ -12,5 +12,7 @@ $(function() {
 
 
     $( "#formProfile button" ).click(addMessage);
-    
+
+    // Charge de la liste d'amis
+    ajaxShowFriends();
 });

@@ -60,23 +60,27 @@
             <!-- -------------------------------------------------------------------- -->
             <!--                 MENU GAUCHE                                          -->
             <!-- -------------------------------------------------------------------- -->
-            <?php include("labeerbook/view/templates/menu.php"); ?>
-
+            <div class="col-xs-12 col-sm-3 col-md-3">
+                <?php include("labeerbook/view/templates/menu.php"); ?>
+            </div>
 
 
             <!-- -------------------------------------------------------------------- -->
             <!--                 MUR OU PAGE ACTUELLE                                 -->
             <!-- -------------------------------------------------------------------- -->
-            <div id="contenu" class="col-xs-12 col-sm-8 col-md-6">
+            <div id="contenu" class="col-xs-12 col-sm-9 col-md-6">
                 <?php include($template_view); ?>
             </div>
 
 
             <!-- -------------------------------------------------------------------- -->
-            <!--                 PUUUUB                                               -->
+            <!--                 MENU DROITE (liste d'amis)                           -->
             <!-- -------------------------------------------------------------------- -->
-            <div class="hidden-sm col-md-3" style="background-image: url('static/pub/ad-1/water-back.png');">
-                <?php //include("labeerbook/view/templates/pub.php"); ?>
+            <div class="hidden-sm hidden-xs col-md-3">
+                <div id="col-amis">
+                    <h3>Les amis</h3>
+                    <!-- On va charger la liste d'amis par AJAX. Voir static/js/init.js -->
+                </div>
             </div>
         </div>
     </div>

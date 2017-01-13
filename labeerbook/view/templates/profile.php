@@ -7,6 +7,14 @@
 
     $userProfile = $context->getSessionAttribute("userProfile");
 
+    // HACK vue profil. Si on va au profil d'un ami et puis on change de page,
+    // par exemple on fait click dans "Liste amis", nous allons voir encore
+    // la photo et l'identifiant de notre ami et pas le notre. C'est parce qu'on
+    // utilise une seule vue pour les profils des amis et le notre, et dans la session
+    // c'est l'objet utilisateur de l'ami qui reste chargé. Ce hack est pour corriger
+    // cela d'une manière simple
+    $context->setSessionAttribute("userProfile", $context->getSessionAttribute("user"));
+
 
     // Le dossier avec les uploads se trouve dans une classe de configuration
     $AVATAR_FOLDER = config::AVATAR_FOLDER;
@@ -26,12 +34,12 @@
     </div>
   </div>
 
-  <div class="col-xs-12 col-sm-5 col-md-6">
+  <div class="col-xs-12 col-sm-8 col-md-6">
     <h2><?php echo $userProfile->identifiant; ?></h2>
     <h3><?php echo $userProfile->prenom . " " . $userProfile->nom; ?></h3>
 
     <blockquote>
-        <p><?php echo ($userProfile->statut != "" ? $userProfile->statut : "sans status"); ?></p>
+        <p id="profil-statut"><?php echo ($userProfile->statut != "" ? $userProfile->statut : "sans status"); ?></p>
     </blockquote>
 
     <!-- Formulaire envoie de message a ce profil -->
@@ -52,5 +60,5 @@
     </div>
 
   </div>
-  <div class="hidden-xs col-sm-3" style=""></div>
+  <div class="hidden-sm col-md-3" style=""></div>
 

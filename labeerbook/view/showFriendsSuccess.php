@@ -7,8 +7,7 @@
     $friends = $context->getSessionAttribute("friends");
 ?>
 
-<h3>Les amis</h3>
-<div id="liste-users" class="container-fluid">
+<div id="liste-amis" class="container-fluid">
 
 <?php
     foreach ($friends as $f) {

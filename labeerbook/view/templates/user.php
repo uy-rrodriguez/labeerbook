@@ -13,7 +13,7 @@
     $imgOnError = "static/img/def-avatars/user (" . ($userTemplate->id % 15) . ").png";
 ?>
 
-<div class="item-liste-users col-xs-6 col-sm-4">
+<div class="item-liste-amis col-xs-6 col-sm-4 col-md-6">
     <a href="?action=showProfile&idProfile=<?php echo $userTemplate->id; ?>">
         <div class="row">
 
@@ -24,7 +24,7 @@
                     onerror="this.onerror=null; this.src='<?php echo $imgOnError; ?>';">
             </div>
 
-            <div class="col-xs-12 text-center">
+            <div class="col-xs-12 text-center div-id-ami">
                 <?php echo $userTemplate->identifiant; ?>
             </div>
         </div>

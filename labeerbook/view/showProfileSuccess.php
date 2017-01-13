@@ -1,6 +1,5 @@
-    <div class="row titre-contenu">Messages reçus</div>
-    <!--<div class="row"><h2>Messages reçus</h2></div>-->
 
+<div class="row titre-contenu">Messages reçus</div>
 
 <?php
     $userProfile = $context->getSessionAttribute("userProfile");

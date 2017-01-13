@@ -36,7 +36,8 @@ function editProfile() {
 	var arrayEdit = {"statut" : $('#StatusEdit').val()};
 
 	sendRequest("ajaxEditProfile", function(response, status, ajaxObj) {
-		alert(response);
+		$("#profil-statut").html(response);
+        alert("Profil édité");
 	}, arrayEdit);
 }
 
@@ -49,11 +50,15 @@ function addMessage(){
 	var message = $('#formProfile textarea').val();
 	var arrData = {"message" : message};
 		sendRequest("ajaxAddMessage", function(response, status, ajaxObj) {
+
 		// On nettoye le formulaire
-			document.location.reload();
-					
+        $('#formProfile textarea').val("");
+
+        // On recharge la liste de messages
+        getMessage();
+
 	}, arrData);
-	
+
 }
 
 
@@ -62,12 +67,12 @@ function addMessage(){
     Description:
     On affiche les messages
 /*//*//*/
-function getMessage(){
-	
+function getMessage() {
+
 	sendRequest("ajaxGetMessages", function(response, status, ajaxObj) {
-		$('#message').html(reponse);	
+		$('#contenu').html(response);
 	});
-	
+
 }
 
 /*//*//*/
@@ -75,11 +80,11 @@ function getMessage(){
     Description:
     On ajoute un like
 /*//*//*/
-function addLike($id){
+function addLike($id, btn) {
 	var arrData = {"message" : $id};
-	sendRequest("ajaxAddLike", function(response,status,ajaxObj){
-			document.location.reload();
-	},arrData)
+	sendRequest("ajaxAddLike", function(response,status,ajaxObj) {
+		$(btn).find("span").html(response);
+	}, arrData);
 }
 
 /*//*//*/
@@ -90,7 +95,18 @@ function addLike($id){
 function share($id){
 	var arrData = {"messageID" : $id};
 	sendRequest("ajaxShareMessage", function(response,status,ajaxObj){
-			alert(response);
 			document.location.reload();
-	},arrData)
+	},arrData);
+}
+
+
+/*//*//*/
+    Auteur : R.RODRIGUEZ
+    Description:
+        On charge la liste d'amis et on l'affiche sur la page.
+/*//*//*/
+function ajaxShowFriends() {
+    sendRequest("showFriends", function(response,status,ajaxObj) {
+        $("#col-amis").append(response);
+    });
 }

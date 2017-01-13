@@ -28,19 +28,24 @@
             </div>
 
             <div class="col-xs-9 msg-contenu">
-                <div class="msg-emetteur"><?php echo $emetteur->identifiant; ?></div>
+                <div class="msg-emetteur">
+                    <?php echo $emetteur->identifiant; ?>
+                    <span class="message-date">
+                        <?php echo $m->post->date->format('d/m/Y H:i'); ?>
+                    </span>
+                </div>
                 <div class="msg-texte">
                     <pre><?php echo strip_tags($m->post->texte, FILTER_SANITIZE_STRING); ?></pre>
                 </div>
             </div>
 
             <div class="msg-share-like">
-                <div  class="btn btn-default msg-btn msg-share">
-                    Partager <img href="" src="static/img/share.png" onclick="share(<?php echo $m->id ?>)">
+                <div  class="btn btn-default msg-btn msg-share" onclick="share(<?php echo $m->id; ?>)">
+                    Partager <img href="" src="static/img/share.png">
                 </div>
-                <div class="btn btn-default msg-btn msg-like">
-                    <?php echo ($m->aime != "" ? $m->aime : 0); ?>
-                    <img href="" src="static/img/like.png" onclick="addLike(<?php echo $m->id ?>)">
+                <div class="btn btn-default msg-btn msg-like" onclick="addLike(<?php echo $m->id; ?>, this)">
+                    <span><?php echo ($m->aime != "" ? $m->aime : 0); ?></span>
+                    <img href="" src="static/img/like.png">
                 </div>
             </div>
         </div>

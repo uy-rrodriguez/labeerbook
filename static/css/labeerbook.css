@@ -2,9 +2,11 @@
 
 /* **********************  VARIABLES  ********************************** */
 /*
-    Variables CSS pour simplifier le design. Pour le rendu final nous
-    avons remplacé toutes les variables pour leur valeurs finales afin
-    que le code soit compatible avec plus de navigateurs.
+    Variables CSS pour simplifier le design. Pour une mise en production
+    il est mieux de remplacer toutes les variables pour leur valeurs finales
+    afin que le code soit compatible avec plus de navigateurs.
+    Néanmoins, les variables CSS sont prises en compte pour la plupart
+    des navigateurs modernes.
 */
 /* *** Couleurs *** */
 :root {
@@ -62,7 +64,7 @@
     --back-form: var(--gris-clair);
     --back-btn: var(--orange-obscur);
 
-    --back-menu: var(--gris);
+    --back-menu: var(--gris-clair);
     --fore-menu: var(--back-page);
 
     --back-menu-hover: var(--orange-obscur);
@@ -393,34 +395,56 @@ body {
 /* Modifications finales : R.RODRIGUEZ                                   */
 /* ********************************************************************* */
 
-#liste-users {
+#col-amis {
+    /*margin-left: 50px;*/
+    padding: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid var(--back-form);
+}
+
+#col-amis h3 {
+    margin: 0px -10px 0px -10px;
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 1.0em;
+    font-weight: bold;
+    color: var(--gris);
+    background-color: var(--back-form);
+}
+
+#liste-amis {
     padding: 0px;
 }
 
-#liste-users a {
+#liste-amis .div-id-ami {
+    padding: 0px;
+    overflow: hidden;
     color: var(--orange-obscur);
 }
 
-#liste-users .item-liste-users {
+#liste-amis .item-liste-amis {
     padding: 5px;
     font-weight: bold;
     font-size: 1.2em;
+    font-size: 100%;
 }
 
-#liste-users .item-liste-users .row {
-    padding: 5px;
+#liste-amis .item-liste-amis .row {
+    padding: 0px;
     margin: 2px;
+    background-color: white;
     border: 1px solid black;
 }
 
-#liste-users .item-liste-users .row:hover {
+#liste-amis .item-liste-amis .row:hover {
     cursor: pointer;
     box-shadow: 5px 5px 2px var(--gris-clair);
     transform: scale(1.1);
     transition: 0.2s;
 }
 
-#liste-users .item-liste-users .img {
+#liste-amis .item-liste-amis .img {
     margin: 0 auto;
     /*width: 100%;
     height: auto;*/
@@ -491,6 +515,14 @@ body {
 .message .msg-emetteur {
     font-size: 1.1em;
     font-weight: bold;
+}
+
+.message-date {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    font-size: 10px;
+    color: var(--gris);
 }
 
 .message .msg-share-like {

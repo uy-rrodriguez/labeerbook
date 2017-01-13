@@ -8,25 +8,25 @@ class messageTable {
 
     /*//*//*/
 	    Auteur : Q.CASTILLO
-	    Description : 
+	    Description :
 	    	La méthode a pour but de récupérer les messages publiés
 	    	sur notre mur
-	    
+
 	/*//*//*/
 	public static function getMessages($context){
-		
+
         $em = dbconnection::getInstance()->getEntityManager();
 
         $user = $context->getSessionAttribute("user");
         //$chatRepository = $em->getRepository('chat');
         //$chats = $chatRepository->findAll();
-        $query = $em->createQuery("SELECT m FROM message m WHERE m.destinataire = :id")
+        $query = $em->createQuery("SELECT m FROM message m WHERE m.destinataire = :id ORDER BY m.id DESC")
                     ->setMaxResults(20);
         $query->setParameter("id", $user->id);
         $messages = $query->getResult();
 
 
-        
+
 
         return $messages;
 	}
@@ -34,30 +34,30 @@ class messageTable {
 
     /*//*//*/
 	    Auteur : Q.CASTILLO
-	    Description : 
+	    Description :
 	    	La méthode a pour but de récupérer les messages publiés
 	    	sur notre mur
-	    
+
 	/*//*//*/
 	public static function getMessagesByDestinataire($user){
-		
+
         $em = dbconnection::getInstance()->getEntityManager();
 
-        $query = $em->createQuery("SELECT m FROM message m WHERE m.destinataire = :id")
+        $query = $em->createQuery("SELECT m FROM message m WHERE m.destinataire = :id ORDER BY m.id DESC")
                     ->setMaxResults(20);
         $query->setParameter("id", $user->id);
         $messages = $query->getResult();
 
 
-        
+
 
         return $messages;
 	}
 
     /*//*//*/
 	    Auteur : Q.CASTILLO
-	    Description : 
-	    	La méthode a pour but de poster un message	    
+	    Description :
+	    	La méthode a pour but de poster un message
 	/*//*//*/
 	public static function createMessage($message,$user,$destinataire,$parent){
 
@@ -82,7 +82,7 @@ class messageTable {
 		$newMessage->parent = $parent;
 		$newMessage->post = $post;
 		$newMessage->aime = 0;
-		
+
 
 		$em->persist($newMessage);
 		$em->flush();
@@ -91,7 +91,7 @@ class messageTable {
 
 	/*//*//*/
 	    Auteur : Q.CASTILLO
-	    Description : 
+	    Description :
 	    	La méthode a pour but de liker le message
 	/*//*//*/
 	public static function addLike($idMessage){
@@ -106,12 +106,13 @@ class messageTable {
 		$em->persist($message);
 		$em->flush();
 
+        return $message;
 	}
 
 		/*//*//*/
 	    Auteur : Q.CASTILLO
-	    Description : 
-	    	La méthode a pour but partager un message sur notre mur  
+	    Description :
+	    	La méthode a pour but partager un message sur notre mur
 	/*//*//*/
 	public static function shareMessage($idMessage,$user,$userProfile){
 		$em =dbconnection::getInstance()->getEntityManager();
@@ -120,7 +121,7 @@ class messageTable {
 		$message = $messageRepository->findOneBy(array('id'=> $idMessage));
 		$texte = $message->post->texte;
 
-		messageTable::createMessage($texte,$user,$user,$userProfile);
+		messageTable::createMessage($texte,$user,$user,$message->parent);
 	}
 
 }

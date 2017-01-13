@@ -1,5 +1,6 @@
 <div>
-    <h2>Modification du statut</h2>
+    <div class="row titre-contenu">Modification du statut</div>
+
     <form method="post" action="#">
         <div class="form-group">
             <label for="status">Comment allez-vous aujourd'hui ?</label>

@@ -1,3 +1,6 @@
+<div class="row titre-contenu">Messages reçus</div>
+
+
 <?php
 	$allMessages = $context->getSessionAttribute("messages");
 
