@@ -159,7 +159,6 @@ class mainController{
             On recupere les nouvelles infos du profil et on modifie
     /*//*//*/
 	public static function ajaxEditProfile($request, $context) {
-		var_dump($request);die;
 		$user = $context->getSessionAttribute("user");
 
 		$user->nom = $request['nom'];
@@ -181,16 +180,13 @@ class mainController{
             sur lequel on se trouve
     /*//*//*/
     public static function ajaxAddMessage($request, $context) {
-        try{
             $userActuel = $context->getSessionAttribute("user");
+            $userActuel2 = utilisateurTable::getUserById($userActuel->id); 
 
-            $newMessage = MessageTable::createMessage($message,$userActuel->id);
-            return context::SUCCESS;
+            $newMessage = MessageTable::createMessage("test",$userActuel2);
 
-        }catch  (Exception $e){
-            $context->setSessionAttribute("msgErreur", $e->getMessage());
-            return context::ERROR;
-        }
+
+            return "message créé OK";
     }
 
 

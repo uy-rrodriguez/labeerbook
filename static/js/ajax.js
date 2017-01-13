@@ -47,12 +47,13 @@ function editProfile() {
     On récupère le message à publier
 /*//*//*/
 function addMessage(){
-	
+	alert("debut test")
 	var message = $('#formProfile textarea').val();
 	
 	sendRequest("ajaxAddMessage", function(response, status, ajaxObj) {
-
-		document.location.href = "?action=login";
+		// On nettoye le formulaire
+                    $("#formProfile textarea").val("");
+                    getMessage();
 	}, message);
 	
 }
@@ -69,4 +70,15 @@ function getMessage(){
 		$('#message').html(reponse);	
 	});
 	
+}
+
+/*//*//*/
+    Auteur : Q.CASTILLO
+    Description:
+    On ajoute un like
+/*//*//*/
+function addLike(){
+	sendRequest("ajaxAddLike", function(response,status,ajaxObj){
+		
+	})
 }

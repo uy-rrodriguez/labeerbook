@@ -8,12 +8,13 @@ class messageTable {
 
     /*//*//*/
 	    Auteur : Q.CASTILLO
-	    Description :
+	    Description : 
 	    	La méthode a pour but de récupérer les messages publiés
 	    	sur notre mur
-
+	    
 	/*//*//*/
 	public static function getMessages($context){
+		
         $em = dbconnection::getInstance()->getEntityManager();
 
         $user = $context->getSessionAttribute("user");
@@ -25,46 +26,63 @@ class messageTable {
         $messages = $query->getResult();
 
 
-
+        
 
         return $messages;
 	}
-
-
 
 
     /*//*//*/
 	    Auteur : Q.CASTILLO
-	    Description :
-	    	La méthode a pour but de poster un message
+	    Description : 
+	    	La méthode a pour but de récupérer les messages publiés
+	    	sur notre mur
+	    
 	/*//*//*/
-	public static function createMessage($message,$id){
+	public static function getMessagesByDestinataire($user){
+		
+        $em = dbconnection::getInstance()->getEntityManager();
+
+        $query = $em->createQuery("SELECT m FROM message m WHERE m.destinataire = :id")
+                    ->setMaxResults(20);
+        $query->setParameter("id", $user->id);
+        $messages = $query->getResult();
+
+
+        
+
+        return $messages;
+	}
+
+    /*//*//*/
+	    Auteur : Q.CASTILLO
+	    Description : 
+	    	La méthode a pour but de poster un message	    
+	/*//*//*/
+	public static function createMessage($message,$user){
 
 		$em =dbconnection::getInstance()->getEntityManager();
 
-		$newMessage = new message;
-		$newMessage->emetteur = $id;
-		$newMessage->destinataire = $id;
-		$newMessage->parent = $id;
-		$newMessage->aime = 0;
+		$post = new post();
+		$post->texte = $message;
+		$post->date = new DateTime(date("Y-m-d H:i:s"));
+		$post->image ="";
+
+
+
+		$newMessage = new message();
+		$newMessage->emetteur = $user;
+		$newmessage->destinataire = $user;
+		$newMessage->parent = $user;
+		$newMessage->post = $post;
+		$newMessage->aimer = 0;
+		
 
 		$em->persist($newMessage);
 		$em->flush();
+
 	}
 
-
-    /*//*//*/
-	    Auteur : R.RODRIGUEZ
-	    Description :
-	    	La méthode a pour but de récupérer les messages publiés
-	    	sur le mur d'un utilisateur quelconque.
-	/*//*//*/
-	public static function getMessagesByDestinataire($user){
-        $em = dbconnection::getInstance()->getEntityManager();
-        $messagesRepository = $em->getRepository('message');
-		$messages = $messagesRepository->findByDestinataire($user->id);
-        return $messages;
-	}
 }
 
 
