@@ -94,7 +94,7 @@
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="static/js/jquery-3.1.1.min.js"></script>
+    <script src="static/js/jquery.min.js"></script>
 
     <!-- jQuery UI -->
     <script src="static/js/jquery-ui.min.js"></script>
